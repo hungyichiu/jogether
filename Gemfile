@@ -30,6 +30,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'bootstrap4-kaminari-views', '~> 1.0', '>= 1.0.1'
+gem 'simple_form', '~> 4.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +45,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'hirb-unicode'
+  gem 'faker', '~> 2.2', '>= 2.2.2'
 end
 
 group :development do
