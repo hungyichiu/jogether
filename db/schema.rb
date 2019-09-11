@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_091909) do
+ActiveRecord::Schema.define(version: 2019_09_11_092723) do
+
+  create_table "events", force: :cascade do |t|
+    t.string "event_name"
+    t.integer "event_type"
+    t.date "apply_start"
+    t.date "apply_end"
+    t.decimal "fee"
+    t.integer "max_attend"
+    t.integer "min_attend"
+    t.date "event_start"
+    t.date "event_end"
+    t.string "event_pic"
+    t.integer "event_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "uesr_id"
+    t.index ["uesr_id"], name: "index_events_on_uesr_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
