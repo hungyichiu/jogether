@@ -10,10 +10,12 @@
   </head>
 
   <body>
-
+    <div class="alert"><%= :notice %></div>
    <%# render './shared/frontend/navbar' %>
-    
+    <div class="container">
+      <%= yield %>
+    </div>
 
-    <%= yield %>
+    
   </body>
 </html>

@@ -1,2 +1,16 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<h1>Events List</h1>
+
+<table class="table">
+  <ul>
+    <% @events.each do |event|%>
+    <li>
+      <!-- <%= event.event_name %> -->
+      <%= link_to event.event_name, event_path(event)%>
+    </li>
+    <% end %>
+  </ul>
+  
+</table>
+
+
+<%= link_to "Add Event", new_event_path%>

@@ -35,6 +35,8 @@ gem 'jquery-rails'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'bootstrap4-kaminari-views', '~> 1.0', '>= 1.0.1'
 gem 'simple_form', '~> 4.1'
+# gem 'webpacker', '~> 0.1'
+# gem 'webpacker', '~> 4.0', '>= 4.0.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
