@@ -1,0 +1,15 @@
+<h1><%= @event.event_name %></h1>
+
+<ul>
+  <li>
+    活動種類：<%= @event.event_type%>元整
+  </li>
+  <li>
+    參加費用：<%= @event.fee.to_i %>元整
+  </li>
+</ul>
+
+
+
+
+<%= link_to "Edit", edit_event_path(@event), class: "btn btn-danger"%>
