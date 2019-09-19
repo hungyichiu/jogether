@@ -1,24 +1,3 @@
-<h1>Events#new</h1>
+<h1>揪什麼好呢？</h1>
 
-<%= simple_form_for @event do |f| %>
-<!--:event_pic-->
-<div class="form-group">
-  <%= f.input :event_name, label: '活動名稱',class: 'form-control' %>
-  <%= f.input :event_type, label: '活動種類',class: 'form-control' %>
-</div>
-<div class="form-group">
-  <%= f.text_field :apply_start, data:{ provide:'datepicker' }, label: '報名開始',class: 'form-control' %>
-  <%= f.text_field :apply_end, data:{ provide:'datepicker' }, label: '報名截止' ,class: 'form-control'%>  
-</div>
-<div class="form-group">
-  <%= f.input :fee, label: '參加費用',class: 'form-control' %>
-  <%= f.input :max_attend, label: '最大人數上限',class: 'form-control' %>
-  <%= f.input :min_attend, label: '最小成團人數',class: 'form-control' %>
-</div>
-<div class="form-group">
-  <%= f.text_field :event_start, data:{ provide:'datepicker' }, label: '活動開始',class: 'form-control' %>
-  <%= f.text_field :event_end, data:{ provide:'datepicker' }, label: '活動結束',class: 'form-control' %> 
-</div>
-<!--:event_status-->
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+<%= render 'form', event: @event %>

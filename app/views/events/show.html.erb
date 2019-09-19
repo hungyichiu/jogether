@@ -2,10 +2,16 @@
 
 <ul>
   <li>
-    活動種類：<%= @event.event_type%>元整
+    活動種類：<%= @event.event_type%>
   </li>
   <li>
     參加費用：<%= @event.fee.to_i %>元整
+  </li>
+  <li>
+    活動開始：<%= @event.event_start%>
+  </li>
+  <li>
+    活動結束：<%= @event.event_end %>
   </li>
 </ul>
 
