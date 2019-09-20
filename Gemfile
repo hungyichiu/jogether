@@ -40,6 +40,8 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # gem 'webpacker', '~> 0.1'
 # gem 'webpacker', '~> 4.0', '>= 4.0.7'
 
+gem 'factory_bot', '~> 5.0', '>= 5.0.2'
+gem 'faker', '~> 2.2', '>= 2.2.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -51,7 +53,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'hirb-unicode'
-  gem 'faker', '~> 2.2', '>= 2.2.2'
+  
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
 end
 
 group :development do
