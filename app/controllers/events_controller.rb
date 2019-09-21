@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
+      EventLog.create(event_id: @event.id, user_id: current_user.id, role: 'owner')
       redirect_to events_path, notice: "活動建立成功"
     else
       render :new
@@ -34,6 +35,10 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    
+  end
+
+  def add_to_list
     
   end
 

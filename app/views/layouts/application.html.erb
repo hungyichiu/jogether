@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <div class="alert"><%= :notice %></div>
+    <%= render 'shared/frontend/navbar' %>
+    <%= render 'shared/frontend/flash' if notice %>
    <%# render './shared/frontend/navbar' %>
     <div class="container">
       <%= yield %>

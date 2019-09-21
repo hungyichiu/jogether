@@ -5,7 +5,7 @@
     <% @events.each do |event|%>
     <li>
       <!-- <%= event.event_name %> -->
-      <%= link_to event.event_name, event_path(event)%>
+      <%= link_to event.event_name, event_path(event)%> 報名截止日：<%= event.apply_end.strftime('%m/%d') %>
     </li>
     <% end %>
   </ul>
@@ -13,4 +13,4 @@
 </table>
 
 
-<%= link_to "Add Event", new_event_path%>
+<%= link_to "來！揪一下！", new_event_path, class: "btn btn-info"%>
