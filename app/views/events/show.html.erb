@@ -1,15 +1,94 @@
-<h1><%= @event.event_name %></h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bunny Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      *{
+           margin: 0;
+           padding: 0;
+           list-style: none;   
+      }
+      
 
-<ul>
-  <li>
-    活動種類：<%= @event.event_type%>元整
-  </li>
-  <li>
-    參加費用：<%= @event.fee.to_i %>元整
-  </li>
-</ul>
+      #map {
+        width: 75%;
+        height: 400px;
+        background-color: #666;
+        /* position: absolute; */
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        bottom: 0;
+        /* margin: auto; */
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+      }
+    </style>
+  </head>
+  <body>
+      
+    <h1><%= @event.event_name %></h1>
+
+    <ul>
+      <li>
+        活動種類：<%= @event.event_type%>
+      </li>
+      <li>
+        參加費用：<%= @event.fee.to_i %>元整
+      </li>
+      <li>
+        活動開始：<%= @event.event_start%>
+      </li>
+      <li>
+        活動結束：<%= @event.event_end %>
+      </li>
+      <li>
+        活動地址： <span id="location2"><%= @event.location %></span>
+      </li>
+    </ul>
+
+    <div id="map"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>
+      var map, geocoder;
+
+function initMap() {
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17
+  });
+  var address = document.querySelector("#location2").innerHTML;
+  console.log(address)
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      console.log(status);
+    }
+  });
+}
+    </script>
+
+    <%= link_to "Edit", edit_event_path(@event), class: "btn btn-danger"%>
+    <%= link_to "我要報名", root_path%>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["google_api_key"]%>&callback=initMap"
+    async defer></script>
+  </body>
+</html>
 
 
-
-
-<%= link_to "Edit", edit_event_path(@event), class: "btn btn-danger"%>

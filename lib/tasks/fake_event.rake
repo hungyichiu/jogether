@@ -3,8 +3,11 @@ namespace :db do
   task :fake_event => :environment do 
     20.times do
       Event.create(
-        # event_name: 
-        # event_type:
+        # event_name: ,
+        # event_type: ,
+        # location: Faker::Address.full_address,
+        # apply_start: 
+        # apply_end:
         
      )
     end

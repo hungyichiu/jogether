@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.0'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -35,8 +36,13 @@ gem 'jquery-rails'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'bootstrap4-kaminari-views', '~> 1.0', '>= 1.0.1'
 gem 'simple_form', '~> 4.1'
+gem 'date_wrapper', '~> 0.1.3'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # gem 'webpacker', '~> 0.1'
 # gem 'webpacker', '~> 4.0', '>= 4.0.7'
+
+gem 'factory_bot', '~> 5.0', '>= 5.0.2'
+gem 'faker', '~> 2.2', '>= 2.2.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -48,7 +54,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'hirb-unicode'
-  gem 'faker', '~> 2.2', '>= 2.2.2'
+  
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
 end
 
 group :development do

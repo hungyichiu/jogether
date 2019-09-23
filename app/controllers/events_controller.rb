@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
+      EventLog.create(event_id: @event.id, user_id: current_user.id, role: 'owner')
       redirect_to events_path, notice: "活動建立成功"
     else
       render :new
@@ -37,6 +38,10 @@ class EventsController < ApplicationController
     
   end
 
+  def add_to_list
+    
+  end
+
   private
 
   def find_event
@@ -45,6 +50,6 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event)
     .permit(:event_pic, :event_name, :event_type, :apply_start, :apply_end, :fee,
-            :max_attend, :min_attend, :event_start, :event_end, :event_status)
+            :max_attend, :min_attend, :event_start, :event_end, :event_status, :location)
   end
 end
