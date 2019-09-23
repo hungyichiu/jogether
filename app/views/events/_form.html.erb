@@ -10,6 +10,7 @@
   </div>
   <%= f.input :event_name, label: '活動名稱',class: 'form-control' %>
   <%= f.input :event_type, collection: Event.event_types.keys, label: '活動種類',class: 'form-control' %>
+  <%= f.input :location, label: '活動地址', class:"from-control" %>
 </div>
 
 
