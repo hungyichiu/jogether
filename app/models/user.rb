@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :events
   enum gender: { female: 0, male: 1 }
   enum user_level: { normal: 0, admin: 1 }
+  has_one_attached :avatar
 end

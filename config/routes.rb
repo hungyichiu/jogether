@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   # get 'events/index'
   # get 'events/new'
   # get 'events/show'
-  devise_for :users 
   
   get 'users/activity', to: 'users#index'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   resources :events do
     member do
