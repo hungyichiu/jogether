@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   after_action :store_action
+  
+
+  private
+  def record_not_found
+    render file: "#{Rails.root}/public/404.html", 
+           status: :not_found,
+           layout: false
+  end
   
   def store_action
     return unless request.get? 
