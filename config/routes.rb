@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   
   get 'users/activity', to: 'users#index'
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  
+  devise_for :users, controllers: { 
+    omniauth_callbacks: "users/omniauth_callbacks" 
+  }
+
   resources :events do
     member do
       put :add_to_list

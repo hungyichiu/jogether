@@ -1,0 +1,7 @@
+google_api_key: "ApiKeyHere" 
+
+GOOGLE_CLIENT_ID: "Client_ID here"
+GOOGLE_CLIENT_SECRET: "Client_Secret here"
+
+FACEBOOK_CLIENT_ID: "Client_ID here"
+FACEBOOK_CLIENT_SECRET: "Client_Secret here"
