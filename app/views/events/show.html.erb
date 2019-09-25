@@ -25,6 +25,11 @@
         bottom: 0;
         /* margin: auto; */
       }
+
+      .event-img {
+        width: 100%;
+      }
+
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
@@ -35,6 +40,10 @@
     </style>
   </head>
   <body>
+
+    <div class="event-img">
+      <%= activity_img(@event) %>
+    </div>
       
     <h1><%= @event.event_name %></h1>
 
