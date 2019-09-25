@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   
   get 'users/activity', to: 'users#index'
 
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
+  devise_for :users, controllers: { 
+    omniauth_callbacks: "users/omniauth_callbacks" 
   }
 
   resources :events do
