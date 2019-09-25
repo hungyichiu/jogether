@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destory]
+  before_action :check_login, only: [:create, :update, :destory]
   def index
     @events = Event.all
   end
@@ -51,5 +52,9 @@ class EventsController < ApplicationController
     params.require(:event)
     .permit(:event_pic, :event_name, :event_type, :apply_start, :apply_end, :fee,
             :max_attend, :min_attend, :event_start, :event_end, :event_status, :location)
+  end
+  private
+  def check_login
+    redirect_to new_user_session_path, notice: '請先登入會員' unless user_signed_in?
   end
 end

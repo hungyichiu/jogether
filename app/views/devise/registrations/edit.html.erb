@@ -9,7 +9,8 @@
     <%= f.input :email, required: true, autofocus: true, label: 'e-mail' %>
     <%= f.input :name, required: true, autofocus: true, label: '姓名/暱稱' %>
     <%= f.input :age, autofocus: true, label: '年齡' %>
-    <%= f.input :gender, required: true, autofocus: true, label: '性別' %>
+    
+    <%= f.input :gender, required: true, autofocus: true, label: '性別', as: :radio_buttons,item_wrapper_class: 'inline', collection: User.genders.keys %>
     <%= f.input :mobile, required: true, autofocus: true, label: '手機' %>
     
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
