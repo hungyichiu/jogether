@@ -3,7 +3,7 @@ module ApplicationHelper
     if user.avatar.attached?
       image_tag user.avatar.variant(resize: size), class: class_name
     else
-      image_tag "/default_avatar.png", class: class_name
+      image_tag "/default_avatar.png", size: size, class: class_name
     end
   end
 
@@ -11,7 +11,7 @@ module ApplicationHelper
     if event.image.attached?
       image_tag event.image, class: class_name
     else
-      image_tag "/default-activity-img.jpg", class: class_name
+      image_tag "/default-activity-img.jpg",class: class_name
     end
   end
 end

@@ -13,7 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require date_wrapper
 //= require_tree .
 //
 
