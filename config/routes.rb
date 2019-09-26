@@ -6,12 +6,23 @@ Rails.application.routes.draw do
   get 'users/activity', to: 'users#index'
 
   devise_for :users, controllers: { 
-    omniauth_callbacks: "users/omniauth_callbacks" 
+    omniauth_callbacks: "users/omniauth_callbacks",
+    registrations: 'users/registrations' 
+
   }
+  resource :user do
+    get 'user/index', to: 'user#index'
+    get 'user/like', to: 'user#like'
+    get 'user/my_events', to: 'user#my_events'
+  end
 
   resources :events do
     member do
       put :add_to_list
+    end
+
+    collection do
+      get :list
     end
   end
 
