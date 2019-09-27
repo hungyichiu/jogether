@@ -1,0 +1,7 @@
+google_api_key: "Put your Key here" 
+
+GOOGLE_CLIENT_ID: "Put your Key here"
+GOOGLE_CLIENT_SECRET: "Put your Key here"
+
+FACEBOOK_CLIENT_ID: "Put your Key here"
+FACEBOOK_CLIENT_SECRET: "Put your Key here"
