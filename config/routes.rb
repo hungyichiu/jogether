@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # get 'events/index'
-  # get 'events/new'
-  # get 'events/show'
-  
   get 'users/activity', to: 'users#index'
 
   devise_for :users, controllers: { 
