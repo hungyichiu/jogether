@@ -33,4 +33,4 @@
 # Ignore application configuration
 /config/application.yml
 # dotenv
-.env
+*.env
