@@ -10,11 +10,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations' 
 
   }
-  resource :user do
-    get 'user/index', to: 'user#index'
-    get 'user/like', to: 'user#like'
-    get 'user/my_events', to: 'user#my_events'
-  end
+  
+  get 'my/index', to: 'my#index'
+  get 'my/like', to: 'my#like'
+  get 'my/events', to: 'my#events'
 
   resources :events do
     member do

@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :event_logs
   has_many :events, through: :event_logs
+
+  has_many :likes
+  has_many :like_events, through: :likes
+
   enum gender: { "男": 0, "女": 1 }
 
   enum user_level: { normal: 0, admin: 1 }
