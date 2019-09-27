@@ -1,12 +1,12 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destory]
-  before_action :check_login, only: [:create, :update, :destory]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel]
+  before_action :check_login, only: [:new, :create, :update, :destroy]
   def index
     @events = Event.all
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(min_attend: 1)
   end
   def create
     @event = Event.new(event_params)
@@ -29,17 +29,22 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to events_path, notice: "活動更新成功"
+      redirect_to event_path, notice: "活動更新成功"
     else
       render :edit
     end
   end
 
   def destroy
-    
+    @event.destroy
+    redirect_to events_path, notice: "活動刪除成功"
   end
 
-  def add_to_list
+  def apply
+    @event.users.where()
+  end
+
+  def cancel
     
   end
 

@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 
   resources :events do
     member do
-      put :add_to_list
+      put :apply
+      put :cancel
     end
 
     collection do

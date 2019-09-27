@@ -6,12 +6,27 @@
   <%= avatar_tag(current_user) %>
   <div class="form-inputs">
     <%= f.input :avatar, autofocus: true, label: '請放你的顯示圖片' %>
-    <%= f.input :email, required: true, autofocus: true, label: 'e-mail' %>
-    <%= f.input :name, required: true, autofocus: true, label: '姓名/暱稱' %>
-    <%= f.input :age, autofocus: true, label: '年齡' %>
-    
-    <%= f.input :gender, required: true, autofocus: true, label: '性別', as: :radio_buttons,item_wrapper_class: 'inline', collection: User.genders.keys %>
-    <%= f.input :mobile, required: true, autofocus: true, label: '手機' %>
+    <div class="row">
+      <div class="col-4">
+        <%= f.input :name, required: true, autofocus: true, label: '姓名/暱稱' %>
+      </div>
+      <div class="col-4">
+        <%= f.input :age, autofocus: true, label: '年齡' %>
+      </div>
+      <div class="col-4">
+        <%= f.input :gender, required: true, autofocus: true, label: '性別',
+         as: :radio_buttons, item_wrapper_class: 'inline', 
+         collection: User.genders.keys %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :email, required: true, autofocus: true, label: 'e-mail' %>
+      </div>
+      <div class="col-6">
+        <%= f.input :mobile, required: true, autofocus: true, label: '手機' %>
+      </div>
+    </div>
     
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -21,12 +36,12 @@
         <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" }, label: '重設密碼' %>
       </div>
       <div class="col-6">
         <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" }, label: '確認密碼' %>
       </div>
     </div>
     
@@ -34,8 +49,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "更新資料", class: "btn btn-success"%>
   </div>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to "返回上一頁", :back, class: "btn btn-primary" %>
