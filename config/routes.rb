@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
-  # get 'events/index'
-  # get 'events/new'
-  # get 'events/show'
-  
   get 'users/activity', to: 'users#index'
 
   devise_for :users, controllers: { 
     registrations: 'users/registrations',
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  resource :user do
-    get 'user/index', to: 'user#index'
-    get 'user/like', to: 'user#like'
-    get 'user/my_events', to: 'user#my_events'
-  end
+  
+  get 'my/index', to: 'my#index'
+  get 'my/like', to: 'my#like'
+  get 'my/events', to: 'my#events'
 
   resources :events do
     member do
