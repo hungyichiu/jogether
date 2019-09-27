@@ -8,5 +8,6 @@ class MyController < ApplicationController
   end
 
   def events
+    @events = current_user.events
   end
 end

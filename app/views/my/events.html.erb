@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% current_user.events do |event| %>
+    <% @events.each do |event| %>
     <tr>
       <td><%= event.event_name %></td>
       <td><%= "#{event.event_start} - #{event.event_end}" %></td>

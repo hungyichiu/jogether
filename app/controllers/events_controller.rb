@@ -48,6 +48,10 @@ class EventsController < ApplicationController
     
   end
 
+  def list
+    @events = Event.all
+  end
+
   private
 
   def find_event
