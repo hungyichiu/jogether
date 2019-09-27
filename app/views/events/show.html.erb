@@ -44,28 +44,32 @@
     <div class="event-img">
       <%= activity_img(@event) %>
     </div>
-      
-    <h1><%= @event.event_name %></h1>
+    <%= simple_form_for @event do |f| %>
+        <h1><%= f.object.event_name %></h1>
+        <ul>
+          <li>
+            活動種類：<%= f.object.event_type %>
+          </li>
+          <li>
+            活動開始：<%= f.object.event_start %>
+          </li>
+          <li>
+            活動結束：<%= f.object.event_end %>
+          </li>
+          <li>
+            活動地址： <span id="location2"><%= f.object.location %></span>
+          </li>
+        </ul>
+    <% end %>
+    
 
-    <ul>
-      <li>
-        活動種類：<%= @event.event_type%>
-      </li>
-      <li>
-        參加費用：<%= @event.fee.to_i %>元整
-      </li>
-      <li>
-        活動開始：<%= @event.event_start%>
-      </li>
-      <li>
-        活動結束：<%= @event.event_end %>
-      </li>
-      <li>
-        活動地址： <span id="location2"><%= @event.location %></span>
-      </li>
-    </ul>
+    
 
     <div id="map"></div>
+    <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
+    <%= link_to "刪除活動", event_path(@event), class: "btn btn-danger", method: :delete, data: {confirm: "確定刪除活動？"} %>
+    <%= link_to "我要報名", apply_event_path, class: "btn btn-success" %>
+    <%= link_to "取消報名", cancel_event_path, class: "btn btn-info"  %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script>
       var map, geocoder;
@@ -90,9 +94,6 @@ function initMap() {
   });
 }
     </script>
-
-    <%= link_to "Edit", edit_event_path(@event), class: "btn btn-danger"%>
-    <%= link_to "我要報名", root_path%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["google_api_key"]%>&callback=initMap"
