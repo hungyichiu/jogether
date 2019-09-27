@@ -30,6 +30,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'devise-bootstrap-views', '~> 1.1'
+gem 'recaptcha', git: "https://github.com/ambethia/recaptcha.git"
+
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
@@ -59,8 +62,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'hirb-unicode'
-  
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 end
 
 group :development do
