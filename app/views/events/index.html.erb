@@ -43,8 +43,27 @@
             </a>
         </div>
 
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          美食
+        </div>
+        <div class="col">
+          藝文
+        </div>
+        <div class="col">
+          娛樂
+        </div>
+        <div class="col">
+          學習
+        </div>
+        <div class="col">
+          運動
+        </div>
+      </div>
+    </div>
+
     <div class="wrap">
-      <h1>Events List</h1>
       <table class="table">
         <ul>
           <% @events.each do |event|%>
@@ -57,39 +76,6 @@
       </table>
       <%= link_to "來！揪一下！", new_event_path, class: "btn btn-info"%>
     </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        美食
-      </div>
-      <div class="col">
-        藝文
-      </div>
-      <div class="col">
-        娛樂
-      </div>
-      <div class="col">
-        學習
-      </div>
-      <div class="col">
-        運動
-      </div>
-    </div>
-  </div>
-
-
-    <table class="table">
-      <ul>
-        <% @events.each do |event|%>
-        <li>
-          <!-- <%= event.event_name %> -->
-          <%= link_to event.event_name, event_path(event)%> 報名截止日：<%= event.apply_end.strftime('%m/%d') %>
-        </li>
-        <% end %>
-      </ul>
-      
-    </table>
 
 
     
