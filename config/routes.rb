@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   get 'users/activity', to: 'users#index'
 
   devise_for :users, controllers: { 
-    omniauth_callbacks: "users/omniauth_callbacks",
-    registrations: 'users/registrations' 
-
+    registrations: 'users/registrations',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
   resource :user do
     get 'user/index', to: 'user#index'
