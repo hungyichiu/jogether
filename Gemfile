@@ -47,10 +47,9 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # gem 'webpacker', '~> 0.1'
 # gem 'webpacker', '~> 4.0', '>= 4.0.7'
 #Use for MetaSearch
-gem 'ransack', '~> 1.7'
+gem 'ransack', '~> 2.3'
 
-gem 'factory_bot', '~> 5.0', '>= 5.0.2'
-gem 'faker', '~> 2.2', '>= 2.2.2'
+gem 'faker', '~> 2.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -62,8 +61,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'hirb-unicode'
-  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
+  gem 'factory_bot_rails', '~> 5.1'
 end
 
 group :development do

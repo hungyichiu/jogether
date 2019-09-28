@@ -6,16 +6,14 @@
       <th scope="col">活動名稱</th>
       <th scope="col">活動日期</th>
       <th scope="col">活動狀態</th>
-      <th scope="col">身份</th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
     <tr>
       <td><%= event.event_name %></td>
-      <td><%= "#{event.event_start} - #{event.event_end}" %></td>
-      <td><%= event.event_logs.status %></td>
-      <td><%= event.event_logs.role %></td>
+      <td><%= "#{event.event_start} ~ #{event.event_end}" %></td>
+      <td><%= event.event_status %></td>
     </tr>
     <% end %>
   </tbody>
