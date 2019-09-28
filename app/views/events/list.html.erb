@@ -1,13 +1,21 @@
-
-<% @events.each do |event| %>
-<div class="card" style="width: 18rem;">
-  <%= activity_img(event, class_name: "card-img-top") %>
-  <div class="card-body">
-    <h5 class="card-title"><%= event.event_name %></h5>
-    <p class="card-text"><%= "#{event.event_start} ~ #{event.event_end}" %></p>
-    <p class="card-text"><%= event.description %></p>
-    <%= link_to "活動詳情", event_path(event), class:"btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= link_to "美食", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "藝文", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "娛樂", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "學習", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "運動", "#" %>
+    </div>
   </div>
 </div>
 
-<% end %>
+<%= render 'shared/frontend/event_card', events: @events %>

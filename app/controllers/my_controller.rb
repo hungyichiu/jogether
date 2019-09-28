@@ -5,6 +5,7 @@ class MyController < ApplicationController
   end
 
   def like
+    @events = current_user.likes
   end
 
   def events

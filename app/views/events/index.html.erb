@@ -47,35 +47,52 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          美食
+          <%= link_to "美食", "#" %>
         </div>
         <div class="col">
-          藝文
+          <%= link_to "藝文", "#" %>
         </div>
         <div class="col">
-          娛樂
+          <%= link_to "娛樂", "#" %>
         </div>
         <div class="col">
-          學習
+          <%= link_to "學習", "#" %>
         </div>
         <div class="col">
-          運動
+          <%= link_to "運動", "#" %>
         </div>
       </div>
     </div>
 
-    <div class="wrap">
-      <table class="table">
-        <ul>
-          <% @events.each do |event|%>
-          <li>
-            <!-- <%= event.event_name %> -->
-            <%= link_to event.event_name, event_path(event)%> 報名截止日：<%= event.apply_end.strftime('%m/%d') %>
-          </li>
-          <% end %>
-        </ul>
-      </table>
       <%= link_to "來！揪一下！", new_event_path, class: "btn btn-info"%>
+
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">最新活動</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">最熱門</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">即將截止</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <% @events.each do |event|%>
+            <tr>
+              <td><%= link_to event.event_name, event_path(event)%> <br>
+              報名截止日：<%= event.apply_end.strftime('%m/%d') %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
 
 
