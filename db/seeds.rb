@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts " start"
-20.times do |i|
+10.times do |i|
   user_name = Faker::Internet.username(specifier: 5..8)
   user = User.new
   user.email = Faker::Internet.email(name: user_name)

@@ -5,8 +5,10 @@ class MyController < ApplicationController
   end
 
   def like
+    @events = current_user.likes
   end
 
   def events
+    @events = current_user.events
   end
 end

@@ -7,7 +7,7 @@ module ApplicationHelper
     end
   end
 
-  def activity_img(event,class_name: 'event-img' )
+  def activity_img(event, class_name: 'event-img' )
     if event.image.attached?
       image_tag event.image, class: class_name
     else

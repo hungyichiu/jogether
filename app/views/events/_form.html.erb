@@ -3,40 +3,41 @@
 <div class="form-group">
   <div class="row">
     <div class="col-12">
-      <%= f.input :image, label: '活動圖片',class: 'form-control' %>
+      <%= f.input :image, label: '活動圖片', class: 'form-control-file', type: 'file' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-5">
+    <div class="col-12 col-md-5">
       <%= f.input :event_name, label: '活動名稱',class: 'form-control' %>
     </div>
-    <div class="col-2">
+    <div class="col-12 col-md-2">
       <%= f.input :event_type, collection: Event.event_types.keys, label: '活動種類',class: 'form-control' %>
     </div>
-    <div class="col-5">
-      <%= f.input :location, label: '活動地址', class:"from-control" %>
-    </div>
-  </div>
-</div>
-
-
-<div class="form-group">
-  <div class="row">
-    <div class="col-6">
-      <%= f.input :apply_start %>
-    </div>
-    <div class="col-6">
-      <%= f.input :apply_end %>
+    <div class="col-12 col-md-5">
+      <%= f.input :location, label: '活動地點', class:"from-control" %>
     </div>
   </div>
 </div>
 
 <div class="form-group">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
+     <%= f.label '活動開始'%>
+      <%= f.date_field :event_start,class: 'form-control' %>
+    </div>
+    <div class="col-12 col-md-6">
+      <%= f.label '活動結束'%>
+      <%= f.date_field :event_end, class: 'form-control' %>       
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <%= f.input :max_attend, label: '最大人數上限',class: 'form-control' %>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <%= f.input :min_attend, label: '最小成團人數',class: 'form-control' %>
     </div>
   </div>
@@ -44,14 +45,18 @@
 
 <div class="form-group">
   <div class="row">
-    <div class="col-6">
-      <%= f.input :event_start, label: '活動開始',class: 'form-control' %>
-    </div>
-    <div class="col-6">
-      <%= f.input :event_end, label: '活動結束',class: 'form-control' %>       
+    <div class="col-12 col-md-6">
+      <%= f.label '報名截止日'%>
+      <%= f.date_field :apply_end, class: 'form-control' %>
     </div>
   </div>
 </div>
+
+<div class="form-group">
+  <%= f.label '活動說明'%>
+  <%= f.text_area :description, class: "form-control" %>
+</div>
+
 <!--:event_status-->
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.button :submit, value: "送出", class: "btn btn-primary btn-lg btn-block" %>
 <% end %>
