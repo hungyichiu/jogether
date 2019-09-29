@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel]
-  before_action :check_login, only: [:new, :create, :update, :destroy]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel, :add_like]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :add_like]
   def index
     @events = Event.all
   end
@@ -20,11 +20,9 @@ class EventsController < ApplicationController
   end
 
   def show
-   
   end
 
   def edit
-    
   end
 
   def update
@@ -45,11 +43,38 @@ class EventsController < ApplicationController
   end
 
   def cancel
-    
   end
 
   def list
     @events = Event.all
+  end
+
+  def add_like
+    @events = current_user.likes.create(event: @event)
+  end
+
+  def food
+    find_event_type('美食')
+  end
+
+  def art
+    find_event_type('藝文')
+  end
+
+  def entertainment
+    find_event_type('娛樂')
+  end
+
+  def learn
+    find_event_type('學習')
+  end
+
+  def sport
+    find_event_type('運動')
+  end
+
+  def find_event_type(type)
+    @events = Event.where(event_type: type)
   end
 
   private

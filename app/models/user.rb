@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :events, through: :event_logs
 
   has_many :likes
-  has_many :like_events, through: :likes
+  has_many :like_events, through: :likes, source: 'event'
 
   enum gender: { "男": 0, "女": 1 }
 

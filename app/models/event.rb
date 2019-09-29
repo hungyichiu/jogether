@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :users, through: :event_logs
 
   has_many :likes
-  has_many :like_users, through: :likes
+  has_many :like_users, through: :likes, source: 'user'
 
   enum event_type: { "運動": 0, "美食": 1, "藝文": 2, "娛樂": 3, "學習": 4 }
   enum event_status: { before_post: 0, posted: 1, closed: 2, rejected: 3 }

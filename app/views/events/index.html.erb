@@ -44,25 +44,7 @@
         </div>
 
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <%= link_to "美食", "#" %>
-        </div>
-        <div class="col">
-          <%= link_to "藝文", "#" %>
-        </div>
-        <div class="col">
-          <%= link_to "娛樂", "#" %>
-        </div>
-        <div class="col">
-          <%= link_to "學習", "#" %>
-        </div>
-        <div class="col">
-          <%= link_to "運動", "#" %>
-        </div>
-      </div>
-    </div>
+    <%= render 'shared/frontend/sub_navbar' %>
 
       <%= link_to "來！揪一下！", new_event_path, class: "btn btn-info"%>
 
@@ -82,11 +64,11 @@
       </div>
 
       <div class="card-body">
-        <table class="table">
+        <table class="table table-borderless">
           <tbody>
             <% @events.each do |event|%>
             <tr>
-              <td><%= link_to event.event_name, event_path(event)%> <br>
+              <td class="border-bottom"><%= link_to event.event_name, event_path(event)%> <br>
               報名截止日：<%= event.apply_end.strftime('%m/%d') %></td>
             </tr>
           </tbody>
