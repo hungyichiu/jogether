@@ -39,10 +39,13 @@
   list-style: none;   
 }
 
-html, body {
+body {
 height: 100%;
 margin: 0;
 padding: 0;
 // background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-background-image: image-url("bg-callout.jpg")
+background-image: image-url("bg-callout.jpg");
+}
+img {
+  width: 100%;
 }

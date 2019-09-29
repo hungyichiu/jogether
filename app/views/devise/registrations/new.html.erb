@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>註冊新帳號</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn btn-xs btn-success" %>
   </div>
 <% end %>
 <table>
@@ -31,4 +31,5 @@
     <td><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></td>
   </tr>
 </table>
+
 <%#= render "devise/shared/links" %>
