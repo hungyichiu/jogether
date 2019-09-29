@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= link_to "美食", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "藝文", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "娛樂", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "學習", "#" %>
+    </div>
+    <div class="col">
+      <%= link_to "運動", "#" %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/frontend/event_card', events: @events %>

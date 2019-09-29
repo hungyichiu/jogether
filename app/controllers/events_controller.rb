@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new(min_attend: 1)
+    @event = Event.new(min_attend: 1, event_status: 'posted')
   end
   def create
     @event = Event.new(event_params)
@@ -46,6 +46,10 @@ class EventsController < ApplicationController
 
   def cancel
     
+  end
+
+  def list
+    @events = Event.all
   end
 
   private
