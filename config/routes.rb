@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       put :apply
       put :cancel
       put :add_like
+      put :dislike
     end
 
     collection do

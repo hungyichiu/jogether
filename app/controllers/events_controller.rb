@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel, :add_like]
-  before_action :check_login, only: [:new, :create, :update, :destroy, :add_like]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel, :add_like, :dislike]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :add_like, :dislike]
   def index
     @events = Event.all
   end
@@ -53,6 +53,11 @@ class EventsController < ApplicationController
     @events = current_user.likes.create(event: @event)
   end
 
+  def dislike
+    current_user.likes.find_by(event: @event).destroy
+    redirect_to my_like_path, notice: "刪除收藏"
+  end
+
   def food
     find_event_type('美食')
   end
@@ -82,12 +87,13 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.find(params[:id])
   end
+
   def event_params
     params.require(:event)
     .permit(:event_pic, :event_name, :event_type, :apply_start, :apply_end, :fee,
             :max_attend, :min_attend, :event_start, :event_end, :event_status, :location, :image)
   end
-  private
+
   def check_login
     redirect_to new_user_session_path, notice: '請先登入會員' unless user_signed_in?
   end
