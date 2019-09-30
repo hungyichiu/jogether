@@ -48,6 +48,75 @@ background-image: image-url("bg-callout.jpg")
 
 }
 
+body {
+background-image: image-url("bg-callout.jpg");
+}
+
+.wrap{
+}
+
+.wrapp{
+  margin-top: 10px;
+  display: block;
+}
+
+.btntest{
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 14px;
+  width: 250px;
+  text-align: center;
+}
+.btntest:hover{
+  transition: 0.3s;
+  box-shadow: 5px 5px 5px #000000;
+}
+
+.btnf{
+  background-color: rgb(59, 83, 154);
+}
+.btng{
+  background-color: rgb(237, 38, 35);
+}
+
+.fb-link-to-text-color {
+  text-decoration: none;
+  color: #ffffff;
+}
+.fb-link-to-text-color:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.google-link-to-text-color {
+  text-decoration: none;
+  color: #ffffff;
+}
+.google-link-to-text-color:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.aabb{
+  // border:1px solid green;
+  width: 55%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.aacc{
+
+}
+
+.regh2{
+  text-align: center;
+  color: #ffffff;
+  text-shadow:3px 3px 3px #666666;
+}
+
+.items{
 .event-categories a {
   color: black;
 }
