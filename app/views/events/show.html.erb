@@ -7,7 +7,6 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-
       #map {
         width: 75%;
         height: 400px;
@@ -23,8 +22,6 @@
       .event-img {
         width: 100%;
       }
-
-      /* Optional: Makes the sample page fill the window. */
     </style>
   </head>
   <body>
@@ -33,25 +30,40 @@
       <%= activity_img(@event) %>
     </div>
     <%= simple_form_for @event do |f| %>
-        <h1><%= f.object.event_name %></h1>
-        <ul>
-          <li>
-            活動種類：<%= f.object.event_type %>
-          </li>
-          <li>
-            活動開始：<%= f.object.event_start %>
-          </li>
-          <li>
-            活動結束：<%= f.object.event_end %>
-          </li>
-          <li>
-            活動地址： <span id="location2"><%= f.object.location %></span>
-          </li>
-        </ul>
-    <% end %>
-    
+    <table class="table">
 
-    
+      <thead>
+        <tr>
+          <th scope="col" colspan="2"><h2><%= f.object.event_name %></h2></th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">報名截止</th>
+          <td><%= f.object.apply_end %></td>
+        </tr>
+        <tr>
+          <th scope="row">活動種類</th>
+          <td><%= f.object.event_type %></td>
+        </tr>
+        <tr>
+          <th scope="row">活動日期</th>
+          <td><%= f.object.event_start %> ~ <%= f.object.event_end %></td>
+        </tr>
+        <tr>
+          <th scope="row">揪團人數(最低成團人數~人數上限)</th>
+          <td><%= f.object.min_attend %>人 ~ <%= f.object.max_attend %>人</td>
+        </tr>
+        <tr>
+          <th scope="row">活動說明</th>
+          <td><%= f.object.description %></td>
+        </tr>
+        <tr>
+          <th scope="row">活動地址</th>
+          <td><span id="location2"><%= f.object.location %></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
 
     <div id="map"></div>
     <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
@@ -62,25 +74,25 @@
     <script>
       var map, geocoder;
 
-function initMap() {
-  geocoder = new google.maps.Geocoder();
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 17
-  });
-  var address = document.querySelector("#location2").innerHTML;
-  console.log(address)
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      console.log(status);
-    }
-  });
-}
+      function initMap() {
+        geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17
+        });
+        var address = document.querySelector("#location2").innerHTML;
+        console.log(address)
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+          } else {
+            console.log(status);
+          }
+        });
+      }
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel]
-  before_action :check_login, only: [:new, :create, :update, :destroy]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel, :add_like, :dislike]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :add_like, :dislike]
   def index
     @events = Event.all
   end
@@ -20,11 +20,9 @@ class EventsController < ApplicationController
   end
 
   def show
-   
   end
 
   def edit
-    
   end
 
   def update
@@ -45,11 +43,54 @@ class EventsController < ApplicationController
   end
 
   def cancel
-    
   end
 
   def list
     @events = Event.all
+  end
+
+  def add_like
+    if current_user.likes.find_by(event: @event)
+      flash.now[:notice] = "已在收藏清單中囉"
+    else
+      @events = current_user.likes.create(event: @event)
+      flash.now[:notice] = "加入收藏"
+    end
+    
+  end
+
+  def dislike
+    current_user.likes.find_by(event: @event).destroy
+    redirect_to my_like_path, notice: "刪除收藏"
+  end
+
+  def food
+    find_event_type('美食')
+  end
+
+  def art
+    find_event_type('藝文')
+  end
+
+  def entertainment
+    find_event_type('娛樂')
+  end
+
+  def learn
+    find_event_type('學習')
+  end
+
+  def sport
+    find_event_type('運動')
+  end
+
+  def find_event_type(type)
+    @events = Event.where(event_type: type)
+  end
+
+  def latest
+    @events = Event.order(created_at: :desc)
+    # render json: @events
   end
 
   private
@@ -57,12 +98,13 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.find(params[:id])
   end
+
   def event_params
     params.require(:event)
     .permit(:event_pic, :event_name, :event_type, :apply_start, :apply_end, :fee,
             :max_attend, :min_attend, :event_start, :event_end, :event_status, :location, :image)
   end
-  private
+
   def check_login
     redirect_to new_user_session_path, notice: '請先登入會員' unless user_signed_in?
   end
