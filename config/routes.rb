@@ -14,10 +14,20 @@ Rails.application.routes.draw do
     member do
       put :apply
       put :cancel
+      put :add_like
+      put :dislike
     end
 
     collection do
       get :list
+      get :food
+      get :art
+      get :entertainment
+      get :learn
+      get :sport
+      get :latest
+      get :hot
+      get :closing
     end
   end
 

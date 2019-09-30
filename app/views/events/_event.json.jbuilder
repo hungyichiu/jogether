@@ -1,0 +1,1 @@
+json.extract! event, :event_name, :event_type, :apply_end, :event_start, :event_end, :location

@@ -15,6 +15,8 @@
  */
 @import "bootstrap";
 // @import "date_wrapper";
+@import "reset";
+
 
 .field_with_errors {
   display: inline-block;
@@ -22,6 +24,12 @@
   input {
     border: 2px solid red;
   }
+}
+
+html, body {
+height: 100%;
+// background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+background-image: image-url("bg-callout.jpg")
 }
 
 .avatar {
@@ -33,16 +41,18 @@
   height: 40px;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  list-style: none;   
+.event-categories {
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+
 }
 
-html, body {
-height: 100%;
-margin: 0;
-padding: 0;
-// background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-background-image: image-url("bg-callout.jpg")
+.event-categories a {
+  color: black;
+}
+
+.event-categories a:hover {
+  text-decoration: none;
+  color: black;
 }

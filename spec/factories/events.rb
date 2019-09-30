@@ -8,7 +8,7 @@ FactoryBot.define do
     min_attend { Faker::Number.within(range: 1..10) }
     event_start { Faker::Date.forward(days: 365) }
     event_end { Faker::Date.forward(days: 365) }
-    event_pic { Faker::LoremFlickr.image }
+    # image { Faker::LoremFlickr.image }
     event_status { 'posted' }
     location { Faker::Address.full_address }
     description { Faker::Lorem.paragraph }
