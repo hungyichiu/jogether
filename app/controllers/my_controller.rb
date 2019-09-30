@@ -8,8 +8,12 @@ class MyController < ApplicationController
     @events = current_user.like_events
   end
 
-  def events
-    @events = current_user.events
+  def events_applied
+    @events = current_user.events #要再改
+  end
+
+  def events_raised
+    @events = current_user.events #要再改
   end
 
   

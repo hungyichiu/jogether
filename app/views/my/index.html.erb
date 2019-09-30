@@ -1,5 +1,44 @@
-<%= avatar_tag(current_user, class_name: 'avatar') %> <br>
+<style>
+  .user-index {
+    text-align: center;
+  }
 
-<%= link_to "編輯會員資料", edit_user_registration_path %> <br>
-<%= link_to "我的活動", my_events_path %> <br>
-<%= link_to "我的收藏", my_like_path %>
+  .my-index-actions a {
+    color: black;
+  }
+
+  .my-index-actions a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+</style>
+
+<div class="container user-index">
+  <div class="avatar">
+    <%= avatar_tag(current_user, class_name: 'avatar') %>
+  </div>
+
+  <div class="my-index-actions">
+    <div class="row">
+      <div class="col">
+        <%= link_to "編輯會員資料", edit_user_registration_path %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= link_to "我報名的活動", my_events_applied_path %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= link_to "我主揪的活動", my_events_raised_path %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= link_to "我的收藏", my_like_path %>
+      </div>
+    </div>
+</div>
+ 
