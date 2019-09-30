@@ -25,6 +25,9 @@ Rails.application.routes.draw do
       get :entertainment
       get :learn
       get :sport
+      get :latest
+      get :hot
+      get :closing
     end
   end
 

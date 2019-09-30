@@ -51,3 +51,8 @@ background-image: image-url("bg-callout.jpg")
 .event-categories a {
   color: black;
 }
+
+.event-categories a:hover {
+  text-decoration: none;
+  color: black;
+}

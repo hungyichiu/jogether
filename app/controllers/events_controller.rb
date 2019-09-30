@@ -50,7 +50,13 @@ class EventsController < ApplicationController
   end
 
   def add_like
-    @events = current_user.likes.create(event: @event)
+    if current_user.likes.find_by(event: @event)
+      flash.now[:notice] = "已在收藏清單中囉"
+    else
+      @events = current_user.likes.create(event: @event)
+      flash.now[:notice] = "加入收藏"
+    end
+    
   end
 
   def dislike
@@ -80,6 +86,11 @@ class EventsController < ApplicationController
 
   def find_event_type(type)
     @events = Event.where(event_type: type)
+  end
+
+  def latest
+    @events = Event.order(created_at: :desc)
+    # render json: @events
   end
 
   private
