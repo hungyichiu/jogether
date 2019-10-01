@@ -1,18 +1,31 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">活動名稱</th>
-      <th scope="col">活動日期</th>
-      <th scope="col">活動狀態</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% events.each do |event| %>
-    <tr>
-      <td><%= event.event_name %></td>
-      <td><%= "#{event.event_start} ~ #{event.event_end}" %></td>
-      <td><%= event.event_status %></td>
-    </tr>
+<style>
+  .card {
+    margin: 3px auto;
+  }
+
+  .card a:hover {
+    text-decoration: none;
+  }
+</style>
+
+<% events.each do |event| %>
+  <div class="card mb-3">
+    <%= link_to event_path(event) do %>
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= activity_img(event, class_name:"card-img") %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.event_name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <i class="far fa-clock"></i><%= "#{event.event_start} ~ #{event.event_end}" %>
+            </h6>
+            <p class="card-text"><%= event.description %></p>
+            <p class="card-text"><small class="text-muted"><%= event.event_status %></small></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
