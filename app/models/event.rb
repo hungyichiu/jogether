@@ -1,5 +1,9 @@
 class Event < ApplicationRecord
-  validates :event_name, :event_type, presence: true
+  validates :event_name, :event_type, :apply_end, :max_attend, :event_start, :event_end, :location, presence: true
+
+  validates :apply_end, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
+  validates_date :event_start, on_or_after: :apply_end
+  validates_date :event_end, on_or_after: :event_start
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
