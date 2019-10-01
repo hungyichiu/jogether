@@ -1,5 +1,4 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <%= link_to "揪團！Go！", events_path, class: "navbar-brand" %>
     <%= link_to events_path do %>
       <%= image_tag "/white-logo.png", size: '50x50' %>
     <% end %>
@@ -22,7 +21,10 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "我的活動", my_events_path, class: 'nav-link' %>
+            <%= link_to "我報名的活動", my_events_applied_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "我主揪的活動", my_events_raised_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <%= link_to "我的收藏", my_like_path, class: 'nav-link' %>
