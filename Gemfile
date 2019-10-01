@@ -32,6 +32,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'devise-bootstrap-views', '~> 1.1'
 gem 'recaptcha', git: "https://github.com/ambethia/recaptcha.git"
+# Time validator
+gem 'validates_timeliness', '~> 4.1', '>= 4.1.1'
 
 
 # Use ActiveStorage variant
