@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
   def index
-    @events = Event.all
+    @events = Event.all.search(params[:search])
   end
 
   def new
