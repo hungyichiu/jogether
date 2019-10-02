@@ -9,11 +9,11 @@ class MyController < ApplicationController
   end
 
   def events_applied
-    @events = current_user.events.where('event_logs.role = ?', EventLog.roles["member"])
+    @events = current_user.applied_events
   end
 
   def events_raised
-    @events = current_user.events.where('event_logs.role = ?', EventLog.roles["owner"])
+    @events = current_user.raised_events
   end
 
   
