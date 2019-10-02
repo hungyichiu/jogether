@@ -5,15 +5,15 @@ default: &default
 
 development:
   <<: *default
-  database: jogether_development
+  database: jogether2_development
 
 test:
   <<: *default
-  database: jogether_test
+  database: jogether2_test
 
 production:
   <<: *default
-  database: jogether_production
-  username: jogether
+  database: jogether2_production
+  username: jogether2
   password: <%= ENV['AAAA_DATABASE_PASSWORD'] %>
 
