@@ -73,15 +73,12 @@ class EventsController < ApplicationController
   end
 
   def add_like
-    if current_user.likes.find_by(event: @event)
-      flash.now[:notice] = "已在收藏清單中囉"
-      render :list
+    if current_user.liked?(@event)
+      redirect_to list_events_path, notice: "已在收藏清單中囉"
     else
-      @events = current_user.likes.create(event: @event)
-      flash.now[:notice] = "加入收藏"
-      render :list
+      current_user.likes.create(user: current_user, event: @event)
+      redirect_to list_events_path, notice: "加入收藏"
     end
-    
   end
 
   def dislike
