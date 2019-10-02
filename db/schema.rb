@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_015803) do
+ActiveRecord::Schema.define(version: 2019_09_30_135829) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 2019_09_29_015803) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.integer "status", default: 0
+    t.string "slug"
     t.index ["event_id"], name: "index_event_logs_on_event_id"
+    t.index ["slug"], name: "index_event_logs_on_slug", unique: true
     t.index ["user_id"], name: "index_event_logs_on_user_id"
   end
 
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_09_29_015803) do
     t.string "location"
     t.text "description"
     t.integer "participants", default: 1
+    t.string "slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
