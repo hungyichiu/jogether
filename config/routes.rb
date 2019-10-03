@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       put :cancel_apply
       put :add_like
       put :dislike
+      get :participants
     end
 
     collection do

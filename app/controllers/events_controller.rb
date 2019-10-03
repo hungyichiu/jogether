@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :participants]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
   
   def index
@@ -40,6 +40,10 @@ class EventsController < ApplicationController
     authorize @event
     @event.destroy
     redirect_to events_path, notice: "活動刪除成功"
+  end
+
+  def participants
+    @users = @event.applied_participants
   end
 
   def apply
