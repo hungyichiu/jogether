@@ -15,7 +15,7 @@ class Event < ApplicationRecord
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { "運動": 0, "美食": 1, "藝文": 2, "娛樂": 3, "學習": 4 }
-  enum event_status: { before_post: 0, posted: 1, closed: 2, rejected: 3 }
+  enum event_status: { "草稿": 0, posted: 1, meet_min: 2, closed: 3, rejected: 4 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
