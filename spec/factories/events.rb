@@ -6,8 +6,8 @@ FactoryBot.define do
     fee { Faker::Number.within(range: 100..1000) }
     max_attend { Faker::Number.within(range: 11..50) }
     min_attend { Faker::Number.within(range: 1..10) }
-    event_start { Faker::Date.forward(days: 365) }
-    event_end { Faker::Date.forward(days: 365) }
+    event_start { Date.today}
+    event_end { Faker::Date.forward(days: 20)}
     # image { Faker::LoremFlickr.image }
     event_status { 'posted' }
     location { Faker::Address.full_address }

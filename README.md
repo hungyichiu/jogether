@@ -5,15 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version：ruby '2.6.3': ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
+* Databas: postgres (PostgreSQL) 11.5
 
 * How to run the test suite
 
