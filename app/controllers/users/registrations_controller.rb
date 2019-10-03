@@ -5,6 +5,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   before_action :check_recaptcha_v2, only: [:create]
 
+  before_action :disable_nav, only: [:new]
+
+  def disable_nav
+    @disable_nav = true
+  end
+
   # GET /resource/sign_up
   # def new
   #   super

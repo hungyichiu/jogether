@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new(min_attend: 1, event_status: 'posted')
+    @event = Event.new(min_attend: 1, event_status: 'open')
   end
   def create
     @event = Event.new(event_params)

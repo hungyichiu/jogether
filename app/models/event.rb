@@ -15,14 +15,35 @@ class Event < ApplicationRecord
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { "運動": 0, "美食": 1, "藝文": 2, "娛樂": 3, "學習": 4 }
-  enum event_status: { "草稿": 0, posted: 1, meet_min: 2, closed: 3, rejected: 4 }
+  enum event_status: { draft: 0, open: 1, reached_min: 2, apply_end: 3, cancelled: 4 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
-     if search
+    if search
        where(['event_name || location LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
-     else
+    else
        all #全て表示させる
     end
- end
+  end
+
+  include AASM
+  aasm(column: :event_status, enum: true, no_direct_assignment: true)do 
+    state :open, initial: true
+    state :reached_min, :apply_end, :cancelled
+
+    event :ppl_apply do
+      transitions from: [:open, :reached_min], to: :apply_end
+      after do
+        puts "發送email"
+      end
+    end
+
+    event :cancel do
+      transitions from: [:open, :reached_min, :apply_end], to: :cancelled
+      after do
+        puts "發送email"
+      end
+    end
+  end
+
 end
