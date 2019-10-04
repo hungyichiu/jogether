@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :participants]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
+  
   def index
     @events = Event.all.search(params[:search])
   end
@@ -15,6 +16,7 @@ class EventsController < ApplicationController
       EventLog.create(event: @event, user: current_user, role: 'owner')
       redirect_to events_path, notice: "活動建立成功"
     else
+      flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
       render :new
     end
   end
@@ -23,6 +25,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    authorize @event
   end
 
   def update
@@ -34,13 +37,22 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    authorize @event
     @event.destroy
     redirect_to events_path, notice: "活動刪除成功"
   end
 
+  def participants
+    @users = @event.applied_participants
+  end
+
   def apply
-    if current_user.event_logs.find_by(event: @event)
+    authorize @event
+    if current_user.applied?(@event)
       flash.now[:notice] = "你已經報名過囉"
+      render :show
+    elsif current_user.raised?(@event)
+      flash.now[:notice] = "你是主辦人，無法報名自己的活動"
       render :show
     else
       EventLog.create(event: @event, user: current_user, role: 'member')
@@ -49,7 +61,8 @@ class EventsController < ApplicationController
   end
 
   def cancel_apply
-    if current_user.event_logs.find_by(event: @event)
+    authorize @event
+    if current_user.applied?(@event)
       EventLog.find_by(event: @event, user: current_user).destroy
       flash.now[:notice] = "已取消報名"
       render :show
@@ -64,15 +77,12 @@ class EventsController < ApplicationController
   end
 
   def add_like
-    if current_user.likes.find_by(event: @event)
-      flash.now[:notice] = "已在收藏清單中囉"
-      render :list
+    if current_user.liked?(@event)
+      redirect_to list_events_path, notice: "已在收藏清單中囉"
     else
-      @events = current_user.likes.create(event: @event)
-      flash.now[:notice] = "加入收藏"
-      render :list
+      current_user.likes.create(user: current_user, event: @event)
+      redirect_to list_events_path, notice: "加入收藏"
     end
-    
   end
 
   def dislike
@@ -117,7 +127,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event)
-    .permit(:event_pic, :event_name, :event_type, :apply_start, :apply_end, :fee,
+    .permit(:event_name, :event_type, :apply_start, :apply_end, :fee,
             :max_attend, :min_attend, :event_start, :event_end, :event_status, :location, :image, :description)
   end
 

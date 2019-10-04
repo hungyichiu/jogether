@@ -4,8 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-  has_many :event_logs
-  has_many :events, through: :event_logs
+         
+  has_many :applied_event_logs, -> { where(role: 'member')}, class_name: 'EventLog'
+  has_many :applied_events, through: :applied_event_logs, source: :event
+
+  has_many :raised_event_logs, -> { where(role: 'owner')}, class_name: 'EventLog'
+  has_many :raised_events, through: :raised_event_logs, source: :event
 
   has_many :likes
   has_many :like_events, through: :likes, source: 'event'
@@ -14,6 +18,19 @@ class User < ApplicationRecord
 
   enum user_level: { normal: 0, admin: 1 }
   has_one_attached :avatar
+
+  def applied?(event)
+    applied_events.include? event
+  end
+
+  def raised?(event)
+    raised_events.include? event
+  end
+
+  def liked?(event)
+    like_events.include? event
+  end
+  
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
