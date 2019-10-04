@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants]
-  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
   
   def index
-    @events = Event.all.search(params[:search])
+    @events = Event.where.not(event_status: 'cancelled').search(params[:search])
   end
 
   def new
@@ -46,6 +46,10 @@ class EventsController < ApplicationController
   def view_participants
     authorize @event
     @users = @event.applied_participants
+  end
+
+  def cancel_event
+    @event.cancel!
   end
 
   def apply
@@ -113,11 +117,11 @@ class EventsController < ApplicationController
   end
 
   def find_event_type(type)
-    @events = Event.where(event_type: type)
+    @events = Event.where(event_type: type).where.not(event_status: 'cancelled')
   end
 
   def latest
-    @events = Event.order(created_at: :desc)
+    @events = Event.order(created_at: :desc).where.not(event_status: 'cancelled')
     # render json: @events
   end
 

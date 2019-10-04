@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       put :add_like
       put :dislike
       get :view_participants
+      put :cancel_event
     end
 
     collection do

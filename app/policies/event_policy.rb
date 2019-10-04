@@ -14,6 +14,10 @@ class EventPolicy
     event_owner(event)
   end
 
+  def cancel_event?
+    event_owner(event)
+  end
+
   def view_participants?
     event_owner(event)
   end
