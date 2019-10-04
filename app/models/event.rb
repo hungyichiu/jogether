@@ -54,8 +54,8 @@ class Event < ApplicationRecord
   end
 
   def meet_min? 
-    if event.applied_participants_logs.count == event.min_attend
-      event.reach_min!
+    if applied_participants_logs.count == min_attend
+      # reach_min!
     end
   end
 
