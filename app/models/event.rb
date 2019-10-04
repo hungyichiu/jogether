@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: 'user'
 
   has_many :applied_participants_logs, -> { where(role: 'member')}, class_name: 'EventLog'
@@ -31,10 +31,15 @@ class Event < ApplicationRecord
     state :open, initial: true
     state :reached_min, :apply_end, :cancelled
 
+    event :back_to_open do
+      transitions from: [:reached_min, :open], to: :open
+    end
+
     event :reach_min do
-      transitions from: :open, to: :reached_min, guard: :meet_min?
-      after do
-        puts "發送email"
+      transitions from: :open, to: :reached_min do
+        guard do
+          applied_participants_logs.count == min_attend
+        end
       end
     end
 
@@ -50,12 +55,6 @@ class Event < ApplicationRecord
       after do
         puts "發送email"
       end
-    end
-  end
-
-  def meet_min? 
-    if applied_participants_logs.count == min_attend
-      # reach_min!
     end
   end
 

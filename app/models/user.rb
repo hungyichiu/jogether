@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :raised_event_logs, -> { where(role: 'owner')}, class_name: 'EventLog'
   has_many :raised_events, through: :raised_event_logs, source: :event
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :like_events, through: :likes, source: 'event'
 
   enum gender: { "男": 0, "女": 1 }

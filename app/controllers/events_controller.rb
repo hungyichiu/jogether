@@ -58,13 +58,6 @@ class EventsController < ApplicationController
       render :show
     else
       EventLog.create(event: @event, user: current_user, role: 'member')
-
-      # if @event.applied_participants_logs.count == @event.min_attend 
-        # @event.reach_min!
-      # else @event.applied_participants_logs.count == @event.max_attend
-      #   @event.close!
-      # end
-
       redirect_to event_path, notice: "報名成功"
     end
   end
