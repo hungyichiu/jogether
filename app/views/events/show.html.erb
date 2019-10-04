@@ -67,7 +67,7 @@
 
     <div id="map"></div>
     <% if user_signed_in? && policy(@event).edit? %>
-      <%= link_to "檢視團員名單", participants_event_path(@event), class: "btn btn-info"%>
+      <%= link_to "檢視團員名單", view_participants_event_path(@event), class: "btn btn-info"%>
       <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
       <%= link_to "刪除活動", event_path(@event), class: "btn btn-danger", method: 'delete', data: {confirm: "確定刪除活動？"} %>
     <% end %>
@@ -77,6 +77,7 @@
     <% end %>
     <% if user_signed_in? && policy(@event).cancel_apply? %>
       <%= link_to "取消報名", cancel_apply_event_path, class: "btn btn-info", method: 'put'  %>
+      <%= link_to "報到QR Code", '#', class: "btn btn-dark"  %>
     <% end %>
 
 

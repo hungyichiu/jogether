@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_015803) do
+ActiveRecord::Schema.define(version: 2019_10_04_013222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,20 +50,18 @@ ActiveRecord::Schema.define(version: 2019_09_29_015803) do
   create_table "events", force: :cascade do |t|
     t.string "event_name"
     t.integer "event_type"
-    t.date "apply_start"
     t.date "apply_end"
     t.decimal "fee"
     t.integer "max_attend"
     t.integer "min_attend"
     t.date "event_start"
     t.date "event_end"
-    t.string "event_pic"
     t.integer "event_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
     t.text "description"
-    t.integer "participants", default: 1
+    t.integer "participants", default: 0
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -102,9 +100,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_015803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.integer "age"
     t.integer "gender"
-    t.integer "user_level"
     t.string "mobile"
     t.string "fb_uid"
     t.string "fb_token"

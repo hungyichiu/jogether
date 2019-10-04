@@ -94,7 +94,11 @@
             <% @events.each do |event|%>
             <tr>
               <td class="border-bottom"><%= link_to event.event_name, event_path(event)%> <br>
-              報名截止日：<%= event.apply_end.strftime('%m/%d') %></td>
+              報名截止日：<%= event.apply_end.strftime('%m/%d') %><br>
+              </td>
+            </tr>
+            <tr>
+              
             </tr>
           </tbody>
           <% end %>

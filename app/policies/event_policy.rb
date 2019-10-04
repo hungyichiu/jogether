@@ -14,6 +14,10 @@ class EventPolicy
     event_owner(event)
   end
 
+  def view_participants?
+    event_owner(event)
+  end
+
   def apply?
     !event_owner(event) && !event_member(event)
   end

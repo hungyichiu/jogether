@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :participants]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike]
   
   def index
@@ -7,8 +7,9 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new(min_attend: 1, event_status: 'open')
+    @event = Event.new(min_attend: 1)
   end
+
   def create
     @event = Event.new(event_params)
 
@@ -42,7 +43,8 @@ class EventsController < ApplicationController
     redirect_to events_path, notice: "活動刪除成功"
   end
 
-  def participants
+  def view_participants
+    authorize @event
     @users = @event.applied_participants
   end
 
@@ -56,6 +58,13 @@ class EventsController < ApplicationController
       render :show
     else
       EventLog.create(event: @event, user: current_user, role: 'member')
+
+      # if @event.applied_participants_logs.count == @event.min_attend 
+        # @event.reach_min!
+      # else @event.applied_participants_logs.count == @event.max_attend
+      #   @event.close!
+      # end
+
       redirect_to event_path, notice: "報名成功"
     end
   end

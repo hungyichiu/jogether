@@ -31,8 +31,15 @@ class Event < ApplicationRecord
     state :open, initial: true
     state :reached_min, :apply_end, :cancelled
 
-    event :ppl_apply do
-      transitions from: [:open, :reached_min], to: :apply_end
+    event :reach_min do
+      transitions from: :open, to: :reached_min, guard: :meet_min?
+      after do
+        puts "發送email"
+      end
+    end
+
+    event :close do
+      transitions from: [:open, :reached_min], to: :closed
       after do
         puts "發送email"
       end
@@ -46,4 +53,11 @@ class Event < ApplicationRecord
     end
   end
 
+  def meet_min? 
+    if event.applied_participants_logs.count == event.min_attend
+      event.reach_min!
+    end
+  end
+
 end
+
