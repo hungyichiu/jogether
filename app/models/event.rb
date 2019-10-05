@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
-  enum event_status: { draft: 0, open: 1, reached_min: 2, aaac: 3, cancelled: 4, aaab: 5 }
+  enum event_status: { draft: 0, open: 1, reached_min: 2, closed: 3, cancelled: 4, aaab: 5 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
@@ -32,7 +32,7 @@ class Event < ApplicationRecord
   include AASM
   aasm(column: :event_status, enum: true)do 
     state :open, initial: true
-    state :reached_min, :apply_end, :cancelled
+    state :reached_min, :apply_end, :closed, :cancelled
 
     event :back_to_open do
       transitions from: [:reached_min, :open], to: :open

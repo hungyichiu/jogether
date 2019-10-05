@@ -100,7 +100,7 @@ class EventsController < ApplicationController
 
   def close_event
     authorize @event
-    @event.close!
+    @event.to_close!
   end
 
   def food
