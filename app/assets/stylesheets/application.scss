@@ -43,9 +43,9 @@
 }
 
 html,body{
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+  background-image: url('http://img.daimajiayuan.com/uploads/allimg/1304/1-130422131615.png');
   background-size: cover;
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
   height: 100%;
   font-family: 'Numans', sans-serif;
   }
@@ -137,18 +137,18 @@ html,body{
   
   .car1{
   height: 600px;
-  margin-top: auto;
+  margin-top: 50px;
   margin-bottom: auto;
   width: 450px;
-  background-color: rgba(255,255,255,0.5) !important;
+  background-color: rgba(0,0,0,0.5) !important;
   }
 
   .carlogin{
     height: 400px;
-    margin-top: auto;
+    margin-top: 50px;
     margin-bottom: auto;
     width: 450px;
-    background-color: rgba(255,255,255,0.5) !important;
+    background-color: rgba(0,0,0,0.5) !important;
   }
   
   .social_icon span{
@@ -169,7 +169,7 @@ html,body{
   .social_icon{
   position: absolute;
   right: 20px;
-  top: -15px;
+  top: -45px;
   }
   
   .input-group-prepend span{
@@ -228,3 +228,30 @@ html,body{
     color: white;
     cursor: pointer;
     }
+
+  .sbr{
+    // display:inline-block;
+  }
+  
+  .texttag{
+    border: 1px solid darkred;
+    width:100px;
+    padding-left: 15px;
+    border-radius: 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    outline:none;
+  }
+
+  .texttag:hover{
+    width:75%;
+  }
+
+  .iconwrap{
+    position: fixed;
+    // top: 0;
+    bottom: 250px;
+    right: 100px;
+    // margin:auto;
+    opacity: 1;
+  }
