@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_015555) do
+ActiveRecord::Schema.define(version: 2019_10_05_020602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_10_04_015555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
-    t.integer "status", default: 0
     t.string "slug"
     t.index ["event_id"], name: "index_event_logs_on_event_id"
     t.index ["slug"], name: "index_event_logs_on_slug", unique: true
@@ -64,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_10_04_015555) do
     t.string "location"
     t.text "description"
     t.integer "participants", default: 0
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_events_on_deleted_at"
   end
 
   create_table "favorites", force: :cascade do |t|

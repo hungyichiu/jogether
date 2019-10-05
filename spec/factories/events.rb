@@ -9,7 +9,7 @@ FactoryBot.define do
     event_start { Date.today}
     event_end { Faker::Date.forward(days: 20)}
     # image { Faker::LoremFlickr.image }
-    event_status { 'posted' }
+    # event_status { 'posted' }
     location { Faker::Address.full_address }
     description { Faker::Lorem.paragraph }
   end

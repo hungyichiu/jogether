@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  acts_as_paranoid
+  scope :available, -> { where.not(event_status: 'cancelled')}
+
   validates :event_name, :event_type, :apply_end, :max_attend, :event_start, :event_end, :location, presence: true
 
   validates :apply_end, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
@@ -14,8 +17,8 @@ class Event < ApplicationRecord
   has_many :applied_participants_logs, -> { where(role: 'member')}, class_name: 'EventLog'
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
-  enum event_type: { "運動": 0, "美食": 1, "藝文": 2, "娛樂": 3, "學習": 4 }
-  enum event_status: { draft: 0, open: 1, reached_min: 2, apply_end: 3, cancelled: 4 }
+  enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
+  enum event_status: { draft: 0, open: 1, reached_min: 2, aaac: 3, cancelled: 4, aaab: 5 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
@@ -27,7 +30,7 @@ class Event < ApplicationRecord
   end
 
   include AASM
-  aasm(column: :event_status, enum: true, no_direct_assignment: true)do 
+  aasm(column: :event_status, enum: true)do 
     state :open, initial: true
     state :reached_min, :apply_end, :cancelled
 
@@ -43,8 +46,10 @@ class Event < ApplicationRecord
       end
     end
 
-    event :close do
+    event :to_close do
       transitions from: [:open, :reached_min], to: :closed
+      # 團主按 收團
+      # 非同步作業 確認時間
       after do
         puts "發送email"
       end

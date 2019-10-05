@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
   
   def index
-    @events = Event.where.not(event_status: 'cancelled').search(params[:search])
+    # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
+    @events = Event.available.search(params[:search])
   end
 
   def new
@@ -37,11 +38,11 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-    authorize @event
-    @event.destroy
-    redirect_to events_path, notice: "活動刪除成功"
-  end
+  # def destroy
+  #   authorize @event
+  #   @event.destroy
+  #   redirect_to events_path, notice: "活動刪除成功"
+  # end
 
   def view_participants
     authorize @event
@@ -49,6 +50,7 @@ class EventsController < ApplicationController
   end
 
   def cancel_event
+    authorize @event
     @event.cancel!
   end
 
@@ -79,7 +81,7 @@ class EventsController < ApplicationController
   end
 
   def list
-    @events = Event.all.order(created_at: :desc)
+    @events = Event.available.order(created_at: :desc)
   end
 
   def add_like
@@ -96,32 +98,37 @@ class EventsController < ApplicationController
     redirect_to my_like_path, notice: "刪除收藏"
   end
 
+  def close_event
+    authorize @event
+    @event.close!
+  end
+
   def food
-    find_event_type('美食')
+    find_event_type(food)
   end
 
   def art
-    find_event_type('藝文')
+    find_event_type(art)
   end
 
   def entertainment
-    find_event_type('娛樂')
+    find_event_type(entertainment)
   end
 
   def learn
-    find_event_type('學習')
+    find_event_type(learn)
   end
 
   def sport
-    find_event_type('運動')
+    find_event_type(sport)
   end
 
   def find_event_type(type)
-    @events = Event.where(event_type: type).where.not(event_status: 'cancelled')
+    @events = Event.available.where(event_type: type)
   end
 
   def latest
-    @events = Event.order(created_at: :desc).where.not(event_status: 'cancelled')
+    @events = Event.available.order(created_at: :desc)
     # render json: @events
   end
 

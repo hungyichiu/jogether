@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   get 'users/activity', to: 'users#index'
 
   devise_for :users, controllers: { 
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
       put :dislike
       get :view_participants
       put :cancel_event
+      put :close_event
     end
 
     collection do
