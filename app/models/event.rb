@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   acts_as_paranoid
-  scope :available, -> { where.not(event_status: 'cancelled')}
+  scope :available, -> { where.not(event_status: 'cancelled').where.not(event_status: 'closed')}
+  scope :available, -> { where( event_status: [ 0,1,2])}
 
   validates :event_name, :event_type, :apply_end, :max_attend, :event_start, :event_end, :location, presence: true
 
