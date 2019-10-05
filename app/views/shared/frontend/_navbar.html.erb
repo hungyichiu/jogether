@@ -11,7 +11,16 @@
         <li class="nav-item">
           <%= link_to "看看現在有哪些活動吧！", list_events_path, class: 'nav-link' %>
         </li>
+        <li class="nav-item">
+          <%= form_tag(events_path, :method => "get", :class => "form-inline my-2 my-lg-0") do %>
+            <%= text_field_tag :search, nil ,placeholder:"search", class:"texttag" %>
+            <%= submit_tag "search" ,:event_name => nil, class: "btn btn-sm btn-outline-success my-2 my-sm-0" %>
+          <% end %> 
+        </li>
       </ul>
+
+        
+
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
         

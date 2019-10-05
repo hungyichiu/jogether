@@ -13,7 +13,6 @@
   <body>
     
     <div class="container">
-
        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -61,17 +60,13 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <div class="col-12">
-          <%= form_tag(events_path, :method => "get") do %>
-           <%= text_field_tag :search %> 
-          <%= submit_tag "Search" ,:event_name => nil ,class: "button is-info"%> 
-        <% end %> 
-          
-        </div>
     <%= render 'shared/frontend/sub_navbar' %>
 
-      <%= link_to "來！揪一下！", new_event_path, class: "btn btn-info"%>
-      <%= link_to "Back", :back,  class: "btn btn-success" %>
+    <div class="iconwrap">
+      <%= link_to new_event_path do %>
+        <%= image_tag ("black-logo.png") %>
+      <% end %>
+    </div>
 
     <div class="card text-center">
       <div class="card-header">
@@ -100,7 +95,7 @@
           <% end %>
         </table>
       </div>
-    </div>
+    </div>  
     <div>
 
 
