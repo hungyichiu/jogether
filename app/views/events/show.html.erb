@@ -117,7 +117,7 @@
           var request = {
               origin: { lat: lat1, lng: lng2},
               destination: address,
-              travelMode: 'DRIVING'
+              travelMode: 'TRANSIT'
           };
           // 繪製路線
           directionsService.route(request, function (result, status) {
