@@ -1,7 +1,12 @@
 class HardWorkJob < ApplicationJob
-  queue_as :default
+  sidekiq_options retry: false
+  # queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(user_id)
+    # user = User.find(user_id)
+    10.times do
+      puts "Hello World"
+    end
+    
   end
 end

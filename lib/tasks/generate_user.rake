@@ -1,7 +1,8 @@
+#encoding: utf-8 
 namespace :user do
-  desc '產生10筆使用者資料'
+  desc '產生3筆使用者資料'
   task :generate => :environment do 
-    10.times do
+    3.times do
       FactoryBot.create(:user)
     end
   end
