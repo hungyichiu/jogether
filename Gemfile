@@ -65,7 +65,7 @@ gem 'aasm', '~> 5.0', '>= 5.0.6'
 gem 'friendly_id', '~> 5.3'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'sidekiq', '~> 6.0', '>= 6.0.1'
-gem 'whenever', '~> 1.0', require: false
+# gem 'whenever', '~> 1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

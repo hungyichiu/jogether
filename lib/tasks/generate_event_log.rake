@@ -1,4 +1,3 @@
-#encoding: utf-8 
 namespace :event_log do
   desc '產生10筆event_log資料'
   task :generate => :environment do 
