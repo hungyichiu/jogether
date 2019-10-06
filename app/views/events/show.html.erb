@@ -66,8 +66,10 @@
     <% end %>
 
     <div id="map"></div>
-    <% if user_signed_in? && policy(@event).edit? %>
+    <% if user_signed_in? && policy(@event).view_participants? %>
       <%= link_to "檢視團員名單", view_participants_event_path(@event), class: "btn btn-info"%>
+    <% end %>
+    <% if user_signed_in? && policy(@event).edit? %>
       <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
       <%#= link_to "刪除活動", event_path(@event), class: "btn btn-danger", method: 'delete', data: {confirm: "確定刪除活動？"} %>
       <%= link_to "收團！確認出團！", close_event_event_path(@event), class: "btn btn-danger", method: 'put', data: {confirm: "確定收團？不再多找些人？"} %>

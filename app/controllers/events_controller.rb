@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   
   def index
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
-    @events = Event.available.search(params[:search])
+    @events = Event.available.order(created_at: :desc).search(params[:search])
   end
 
   def new
@@ -101,6 +101,7 @@ class EventsController < ApplicationController
   def close_event
     authorize @event
     @event.to_close!
+    redirect_to my_events_raised_path, notice: "收團！"
   end
 
   def food
@@ -124,7 +125,7 @@ class EventsController < ApplicationController
   end
 
   def find_event_type(type)
-    @events = Event.available.where(event_type: type)
+    @events = Event.available.where(event_type: type).order(created_at: :desc)
   end
 
   def latest

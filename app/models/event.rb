@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
-  enum event_status: { draft: 0, open: 1, reached_min: 2, closed: 3, cancelled: 4, aaab: 5 }
+  enum event_status: { draft: 0, open: 1, reached_min: 2, closed: 3, cancelled: 4 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
@@ -50,14 +50,15 @@ class Event < ApplicationRecord
     event :to_close do
       transitions from: [:open, :reached_min], to: :closed
       # 團主按 收團
+      # 人滿
       # 非同步作業 確認時間
       after do
-        puts "發送email"
+        EventMailer.with(event: @event).confirm_event_email.deliver_later
       end
     end
 
     event :cancel do
-      transitions from: [:open, :reached_min, :apply_end], to: :cancelled
+      transitions from: [:open, :reached_min], to: :cancelled
       after do
         puts "發送email"
       end

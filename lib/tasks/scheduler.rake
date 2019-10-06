@@ -1,7 +1,7 @@
 desc "Heroku scheduler add-on"
 task :say_hi => :environment do
   3.times do
-    puts "Hello World"
+    puts "Hello scheduler"
   end
 end
 

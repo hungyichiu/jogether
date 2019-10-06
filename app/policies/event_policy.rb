@@ -15,7 +15,7 @@ class EventPolicy
   # end
 
   def cancel_event?
-    event_owner(event) 
+    event_owner(event) && (event.open? || event.reached_min?)
   end
 
     def close_event?
