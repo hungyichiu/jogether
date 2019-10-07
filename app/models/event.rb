@@ -15,7 +15,7 @@ class Event < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: 'user'
 
-  has_many :applied_participants_logs, -> { where(role: 'member')}, class_name: 'EventLog'
+  has_many :applied_participants_logs, -> { includes(:event_logs).where(role: 'member')}, class_name: 'EventLog'
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
@@ -53,7 +53,8 @@ class Event < ApplicationRecord
       # 人滿
       # 非同步作業 確認時間
       after do
-        EventMailer.with(event: @event).confirm_event_email.deliver_later
+        EventMailer.confirm_event_email(self).deliver_now
+        # 會觸發 .to_close 的event
       end
     end
 

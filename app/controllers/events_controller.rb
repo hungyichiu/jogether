@@ -105,23 +105,23 @@ class EventsController < ApplicationController
   end
 
   def food
-    find_event_type(food)
+    find_event_type('food')
   end
 
   def art
-    find_event_type(art)
+    find_event_type('art')
   end
 
   def entertainment
-    find_event_type(entertainment)
+    find_event_type('entertainment')
   end
 
   def learn
-    find_event_type(learn)
+    find_event_type('learn')
   end
 
   def sport
-    find_event_type(sport)
+    find_event_type('sport')
   end
 
   def find_event_type(type)
@@ -141,7 +141,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event)
-    .permit(:event_name, :event_type, :apply_start, :apply_end, :fee,
+    .permit(:event_name, :event_type, :apply_end, :fee,
             :max_attend, :min_attend, :event_start, :event_end, :event_status, :location, :image, :description)
   end
 
