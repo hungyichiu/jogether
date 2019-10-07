@@ -38,12 +38,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   authorize @event
-  #   @event.destroy
-  #   redirect_to events_path, notice: "活動刪除成功"
-  # end
-
   def view_participants
     authorize @event
     @users = @event.applied_participants
@@ -65,18 +59,6 @@ class EventsController < ApplicationController
     else
       EventLog.create(event: @event, user: current_user, role: 'member')
       redirect_to event_path, notice: "報名成功"
-    end
-  end
-
-  def cancel_apply
-    authorize @event
-    if current_user.applied?(@event)
-      EventLog.find_by(event: @event, user: current_user).destroy
-      flash.now[:notice] = "已取消報名"
-      render :show
-    else
-      flash.now[:notice] = "你沒有報名這個活動喔"
-      render :show
     end
   end
 
@@ -142,7 +124,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event)
     .permit(:event_name, :event_type, :apply_end, :fee,
-            :max_attend, :min_attend, :event_start, :event_end, :event_status, :location, :image, :description)
+            :min_attend, :event_start, :event_status, :location, :image, :description)
   end
 
   def check_login

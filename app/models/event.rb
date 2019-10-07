@@ -3,11 +3,10 @@ class Event < ApplicationRecord
   # scope :available, -> { where.not(event_status: 'cancelled').where.not(event_status: 'closed')}
   scope :available, -> { where( event_status: [1, 2])}
 
-  validates :event_name, :event_type, :apply_end, :max_attend, :event_start, :event_end, :location, presence: true
+  validates :event_name, :event_type, :apply_end, :event_start, :location, presence: true
 
   validates :apply_end, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
   validates_date :event_start, on_or_after: :apply_end
-  validates_date :event_end, on_or_after: :event_start
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
@@ -19,7 +18,7 @@ class Event < ApplicationRecord
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
   enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
-  enum event_status: { draft: 0, open: 1, reached_min: 2, closed: 3, cancelled: 4 }
+  enum event_status: { open: 1, reached_min: 2, success: 3, fail: 4,cancelled: 5 }
   has_one_attached :image
 
   def self.search(search) #self.はUser.を意味する
@@ -33,7 +32,7 @@ class Event < ApplicationRecord
   include AASM
   aasm(column: :event_status, enum: true)do 
     state :open, initial: true
-    state :reached_min, :apply_end, :closed, :cancelled
+    state :reached_min, :success, :fail, :cancelled
 
     event :back_to_open do
       transitions from: [:reached_min, :open], to: :open
@@ -50,7 +49,6 @@ class Event < ApplicationRecord
     event :to_close do
       transitions from: [:open, :reached_min], to: :closed
       # 團主按 收團
-      # 人滿
       # 非同步作業 確認時間
       after do
         EventMailer.confirm_event_email(self).deliver_now
