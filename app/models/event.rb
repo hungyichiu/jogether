@@ -53,8 +53,8 @@ class Event < ApplicationRecord
       # 人滿
       # 非同步作業 確認時間
       after do
-        # EventMailer.confirm_event_email(self).deliver_now
-        # 會觸發 .to_close 的event
+        EventMailer.confirm_event_email(self).deliver_now
+        # self 指會觸發 .to_close 的這個event
       end
     end
 

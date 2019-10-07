@@ -6,7 +6,7 @@ class MyController < ApplicationController
 
   def like
     @events = current_user.like_events
-    HardWorkJob.delay.go(current_user.id)
+    # HardWorkJob.delay.go(current_user.id)
   end
 
   def events_applied
