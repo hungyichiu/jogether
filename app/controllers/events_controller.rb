@@ -1,9 +1,15 @@
 class EventsController < ApplicationController
+<<<<<<< HEAD
   require 'sidekiq/api'
 
   before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event, :owner]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
+=======
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
+
+>>>>>>> 31be7bcf0d9f4e395578d18c86f9d9629a43b289
   def index
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
     @events = Event.available.order(created_at: :desc).search(params[:search])
@@ -22,12 +28,14 @@ class EventsController < ApplicationController
 
       redirect_to events_path, notice: "活動建立成功"
     else
-      flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
+      # flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
       render :new
     end
   end
 
   def show
+    @comment = Comment.new
+    @comment.event_id = @event.id
   end
 
   def edit
@@ -82,17 +90,12 @@ class EventsController < ApplicationController
   end
 
   def add_like
-    if current_user.liked?(@event)
-      redirect_to list_events_path, notice: "已在收藏清單中囉"
-    else
-      current_user.likes.create(user: current_user, event: @event)
-      redirect_to list_events_path, notice: "加入收藏"
-    end
+    current_user.likes.create(user: current_user, event: @event) unless current_user.liked?(@event)
   end
 
   def dislike
-    current_user.likes.find_by(event: @event).destroy
-    redirect_to my_like_path, notice: "刪除收藏"
+    current_user.likes.find_by(event: @event).destroy if current_user.liked?(@event)
+    # redirect_to my_like_path, notice: "刪除收藏"
   end
 
   def close_event
@@ -102,23 +105,23 @@ class EventsController < ApplicationController
   end
 
   def food
-    find_event_type('food')
+    find_event_type(:food)
   end
 
   def art
-    find_event_type('art')
+    find_event_type(:art)
   end
 
   def entertainment
-    find_event_type('entertainment')
+    find_event_type(:entertainment)
   end
 
   def learn
-    find_event_type('learn')
+    find_event_type(:learn)
   end
 
   def sport
-    find_event_type('sport')
+    find_event_type(:sport)
   end
 
   def find_event_type(type)

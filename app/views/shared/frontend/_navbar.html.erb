@@ -1,6 +1,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
     <%= link_to events_path do %>
-      <%= image_tag "/white-logo.png", size: '50x50' %>
+      <%= image_tag "yellow-logo.png", size: '50x50' %>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
         <li class="nav-item">
           <%= form_tag(events_path, :method => "get", :class => "form-inline my-2 my-lg-0") do %>
             <%= text_field_tag :search, nil ,placeholder:"search", class:"texttag" %>
-            <%= submit_tag "search" ,:event_name => nil, class: "btn btn-sm btn-outline-success my-2 my-sm-0" %>
+            <%#= submit_tag "search" ,:event_name => nil, class: "btn btn-sm btn-outline-success my-2 my-sm-0" %>
           <% end %> 
         </li>
       </ul>

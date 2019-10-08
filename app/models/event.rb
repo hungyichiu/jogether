@@ -10,6 +10,7 @@ class Event < ApplicationRecord
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
+  has_many :comments
 
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: 'user'
