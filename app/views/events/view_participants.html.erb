@@ -11,8 +11,8 @@
         <div class="card-body">
           <h5 class="card-title"><%= user.name %></h5>
           <p class="card-text"><%= user.gender %></p>
-          <p class="card-text"><i class="fas fa-mobile-alt"></i> <%= link_to user.mobile, "#{ user.mobile }" %></p>
-          <p class="card-text"><i class="fas fa-envelope-open-text"></i> <%= link_to user.email, "#{ user.email }" %></p>
+          <p class="card-text"><i class="fas fa-mobile-alt"></i> <%= link_to user.mobile, "#{ user.mobile } " if user.mobile.present? %></p>
+          <p class="card-text"><i class="fas fa-envelope-open-text"></i> <%= mail_to user.email, "#{ user.email }" %></p>
         </div>
       </div>
     </div>

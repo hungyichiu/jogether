@@ -71,8 +71,11 @@
     <% end %>
     <% if user_signed_in? && policy(@event).edit? %>
       <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
-      <%= link_to "收團！確認出團！", close_event_event_path(@event), class: "btn btn-danger", method: 'put', data: {confirm: "確定收團？不再多找些人？"} %>
       <%= link_to "取消活動", cancel_event_event_path(@event), class: "btn btn-dark", data: {confirm: "確定取消活動？"}, method: 'put' %>
+    <% end %>
+
+    <% if user_signed_in? && policy(@event).close_event? %>
+      <%= link_to "收團！確認出團！", close_event_event_path(@event), class: "btn btn-danger", method: 'put', data: {confirm: "確定收團？不再多找些人？"} %>
     <% end %>
 
     <% if policy(@event).apply? %>

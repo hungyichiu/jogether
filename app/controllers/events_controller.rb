@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
-  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
+  require 'sidekiq/api'
+
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
   def index
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
@@ -16,6 +18,8 @@ class EventsController < ApplicationController
 
     if @event.save
       EventLog.create(event: @event, user: current_user, role: 'owner')
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
+
       redirect_to events_path, notice: "活動建立成功"
     else
       flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
@@ -33,6 +37,13 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       redirect_to event_path, notice: "活動更新成功"
+
+      Sidekiq::ScheduledSet.new.select {|job| job.klass == 'CheckOpenTimeUpJob' }.each do |job|
+        job.delete if job.args == [{ "event_id" => @event.id }]
+      end
+
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
+      # 寄信通知團員有變更(TBD)
     else
       render :edit
     end
@@ -45,7 +56,11 @@ class EventsController < ApplicationController
 
   def cancel_event
     authorize @event
-    @event.cancel!
+    @event.to_cancel!
+
+    Sidekiq::ScheduledSet.new.select {|job| job.klass == 'CheckOpenTimeUpJob' }.each do |job|
+      job.delete if job.args == [{ "event_id" => @event.id }]
+    end
   end
 
   def apply
@@ -82,7 +97,7 @@ class EventsController < ApplicationController
 
   def close_event
     authorize @event
-    @event.to_close!
+    @event.to_success!
     redirect_to my_events_raised_path, notice: "收團！"
   end
 

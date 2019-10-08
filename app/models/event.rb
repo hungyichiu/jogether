@@ -17,9 +17,15 @@ class Event < ApplicationRecord
   has_many :applied_participants_logs, -> { includes(:event_logs).where(role: 'member')}, class_name: 'EventLog'
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
+  # has_one :owner_log, -> { includes(:event_logs).where(role: 'owner')}, through: :event_log, class_name: 'EventLog'
+  # has_one :owner, through: :owner_log, source: :user
+
+
   enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
   enum event_status: { open: 1, reached_min: 2, success: 3, fail: 4,cancelled: 5 }
   has_one_attached :image
+
+  # after_commit :check_open_time_up_job
 
   def self.search(search) #self.はUser.を意味する
     if search
@@ -29,37 +35,59 @@ class Event < ApplicationRecord
     end
   end
 
+  # in the future,可以把 job 放在 model。但是這個專案很多 after_commit，先移到 controller比較單純
+  # def check_open_time_up_job
+  #   job = CheckOpenTimeUpJob.perform_at(apply_end, id)
+  # end
+
   include AASM
   aasm(column: :event_status, enum: true)do 
     state :open, initial: true
     state :reached_min, :success, :fail, :cancelled
 
-    event :back_to_open do
-      transitions from: [:reached_min, :open], to: :open
-    end
-
-    event :reach_min do
+    event :to_reach_min do
       transitions from: :open, to: :reached_min do
         guard do
           applied_participants_logs.count == min_attend
         end
+        after do
+        # 寄e-mail問主揪要不要收團還是繼續開放
+        EventMailer.reach_min_notice(self).deliver_later
+      end
       end
     end
 
-    event :to_close do
-      transitions from: [:open, :reached_min], to: :closed
+    event :to_success do
+      transitions from: :reached_min, to: :success
       # 團主按 收團
       # 非同步作業 確認時間
       after do
-        EventMailer.confirm_event_email(self).deliver_now
+        users.each do |u|
+          EventMailer.success_notice(event: self, user: u).deliver_later
+        end
+        # EventMailer.success_notice(self).deliver_later
         # self 指會觸發 .to_close 的這個event
       end
     end
 
-    event :cancel do
+    event :to_fail do
+      transitions from: :open, to: :fail
+      # 非同步作業 確認時間
+      after do
+        # 寄信通知團主與團員
+        users.each do |u|
+          EventMailer.fail_notice(event: self, user: u).deliver_later
+        end
+      end
+    end
+
+    event :to_cancel do
       transitions from: [:open, :reached_min], to: :cancelled
       after do
-        puts "發送email"
+        # 寄信通知團主與團員
+        users.each do |u|
+          EventMailer.cancel_notice(event: self, user: u).deliver_later
+        end
       end
     end
   end
