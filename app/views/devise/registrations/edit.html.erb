@@ -49,8 +49,9 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "更新資料", class: "btn btn-success"%>
+    <%= f.button :submit, "更新資料", class: "btn login_btn"%>
+    <%= link_to "返回上一頁", :back, class: "btn login_btn" %>
   </div>
 <% end %>
 
-<%= link_to "返回上一頁", :back, class: "btn btn-primary" %>
+

@@ -14,4 +14,41 @@ module ApplicationHelper
       image_tag "/default-activity-img.jpg",class: class_name
     end
   end
+
+  def if_liked(event)
+    if current_user.liked?(event)
+      link_to dislike_event_path(event),
+      method: 'put',
+      class: "ajxbtn btn redbg",
+      remote: true,
+      id: "like_#{event.id}" do
+        '<i class="far fa-heart"></i>'.html_safe
+      end
+    else
+      link_to add_like_event_path(event),
+      method: 'put',
+      class: "ajxbtn btn whitebg",
+      remote: true,
+      id: "like_#{event.id}" do
+        '<i class="far fa-heart"></i>'.html_safe
+      end
+    end 
+  end
+
+  # def has_liked_event_class(event)
+  #   if current_user.liked?(@event)
+  #     link_to add_like_event_path(event),
+  #     method: 'put',
+  #     class: "ajxbtn btn btn-outline-danger redbg",
+  #     remote: true,
+  #     id: "like_#{event.id}" do %>
+  #         <i class="far fa-heart"></i>
+  # #         <% end %>
+  #   else
+  #     link_to add_like_event_path(event),
+  #     method: 'put',
+  #     class: "ajxbtn btn btn-outline-danger whitebg",
+  #     remote: true
+  #   end
+  # end 
 end
