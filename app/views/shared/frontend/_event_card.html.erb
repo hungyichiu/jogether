@@ -6,10 +6,9 @@
       <p class="card-text"><i class="far fa-clock"></i><%= "#{event.event_start} ~ #{event.event_end}" %></p>
       <p class="card-text"><%= event.event_type %></p>
       <p class="card-text"><%= event.description %></p>
+
       <%= link_to "活動詳情", event_path(event), class:"btn btn-primary" %>
-      <%= link_to add_like_event_path(event), method: 'put', class: "btn btn-outline-danger" do %>
-        <i class="far fa-heart"></i>
-      <% end %>
+      <%= if_liked(event) %>
     </div>
   </div>
 <% end %>

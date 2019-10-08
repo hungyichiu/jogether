@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       EventLog.create(event: @event, user: current_user, role: 'owner')
       redirect_to events_path, notice: "活動建立成功"
     else
-      flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
+      # flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
       render :new
     end
   end
@@ -85,17 +85,12 @@ class EventsController < ApplicationController
   end
 
   def add_like
-    if current_user.liked?(@event)
-      redirect_to list_events_path, notice: "已在收藏清單中囉"
-    else
-      current_user.likes.create(user: current_user, event: @event)
-      redirect_to list_events_path, notice: "加入收藏"
-    end
+    current_user.likes.create(user: current_user, event: @event) unless current_user.liked?(@event)
   end
 
   def dislike
-    current_user.likes.find_by(event: @event).destroy
-    redirect_to my_like_path, notice: "刪除收藏"
+    current_user.likes.find_by(event: @event).destroy if current_user.liked?(@event)
+    # redirect_to my_like_path, notice: "刪除收藏"
   end
 
   def close_event
