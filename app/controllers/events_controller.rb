@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
-  
+
   def index
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
     @events = Event.available.search(params[:search])
@@ -99,23 +99,23 @@ class EventsController < ApplicationController
   end
 
   def food
-    find_event_type(food)
+    find_event_type(:food)
   end
 
   def art
-    find_event_type(art)
+    find_event_type(:art)
   end
 
   def entertainment
-    find_event_type(entertainment)
+    find_event_type(:entertainment)
   end
 
   def learn
-    find_event_type(learn)
+    find_event_type(:learn)
   end
 
   def sport
-    find_event_type(sport)
+    find_event_type(:sport)
   end
 
   def find_event_type(type)
