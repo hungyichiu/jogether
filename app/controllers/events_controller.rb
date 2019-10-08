@@ -1,15 +1,9 @@
 class EventsController < ApplicationController
-<<<<<<< HEAD
   require 'sidekiq/api'
 
   before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event, :owner]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
-=======
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
-  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :cancel_apply, :add_like, :dislike, :cancel_event]
-
->>>>>>> 31be7bcf0d9f4e395578d18c86f9d9629a43b289
   def index
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
     @events = Event.available.order(created_at: :desc).search(params[:search])
