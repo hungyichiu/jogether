@@ -118,8 +118,7 @@ class EventsController < ApplicationController
     find_event_type(:sport)
   end
 
-  def find_event_type(:type)
-    byebug
+  def find_event_type(type)
     @events = Event.available.where(event_type: type)
   end
 
