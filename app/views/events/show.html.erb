@@ -81,6 +81,15 @@
       <%= link_to "取消報名", cancel_apply_event_path, class: "btn btn-info", method: 'put'  %>
     <% end %>
 
+    <hr />
+
+    <!-- 留言區 -->
+    <h3>留言區</h3>
+    <hr />
+    <%= render partial: 'events/comment', collection: @event.comments.reverse %>
+    <hr />
+    <%= render partial: 'comments/form' %>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script>
