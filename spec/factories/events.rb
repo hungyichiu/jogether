@@ -5,7 +5,7 @@ FactoryBot.define do
     # apply_end { Faker::Time.forward(days: 23, period: :morning }
     fee { Faker::Number.within(range: 100..1000) }
     min_attend { Faker::Number.within(range: 1..10) }
-    event_start { Faker::Time.forward(days: 23, period: :morning)}
+    # event_start { Faker::Time.forward(days: 23, period: :morning)}
     # image { Faker::LoremFlickr.image }
     # event_status { 'posted' }
     location { Faker::Address.full_address }

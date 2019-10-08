@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   require 'sidekiq/api'
 
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event, :owner]
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
   def index
@@ -129,6 +129,10 @@ class EventsController < ApplicationController
     @events = Event.available.order(created_at: :desc)
     # render json: @events
   end
+
+  # def owner
+  #   @user = self.users.first
+  # end
 
   private
 

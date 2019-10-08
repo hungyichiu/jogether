@@ -24,6 +24,12 @@
         <%= f.input :mobile, required: true, autofocus: true, label: '手機' %>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-12">
+        <%= f.input :self_intro, autofocus: true, label: '關於我', placeholder: '跟別人介紹一下你自己吧' %>
+      </div>
+    </div>
     
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get :view_participants
       put :cancel_event
       put :close_event
+      get :owner
     end
 
     collection do

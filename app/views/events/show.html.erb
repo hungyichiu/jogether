@@ -29,17 +29,25 @@
     <div class="event-img">
       <%= activity_img(@event) %>
     </div>
+   
+
     <%= simple_form_for @event do |f| %>
     <table class="table">
 
       <thead>
         <tr>
-          <th scope="col" colspan="2"><h2><%= f.object.event_name %></h2></th>
+          <th scope="col"><h2><%= f.object.event_name %></h2></th>
+          <td>主揪：
+            <%= link_to owner_event_path do %>
+              <%= avatar_tag(f.object.users.first, size: '50x50') %>
+            <% end %>
+          </td>
+        </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">報名截止</th>
-          <td><%= f.object.apply_end %></td>
+          <td colspan="2"><%= f.object.apply_end %></td>
         </tr>
         <tr>
           <th scope="row">活動種類</th>

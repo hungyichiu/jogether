@@ -6,5 +6,6 @@ FactoryBot.define do
     gender { [0, 1].sample }
     mobile { Faker::PhoneNumber.phone_number }
     # avatar { Faker::Avatar.image( size: "100x100", format: "jpg") }
+    self_intro { Faker::TvShows::Friends.quote }
   end
 end
