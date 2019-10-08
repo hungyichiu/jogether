@@ -11,9 +11,6 @@
         <%= f.input :name, required: true, autofocus: true, label: '姓名/暱稱' %>
       </div>
       <div class="col-4">
-        <%= f.input :age, autofocus: true, label: '年齡' %>
-      </div>
-      <div class="col-4">
         <%= f.input :gender, required: true, autofocus: true, label: '性別',
          as: :radio_buttons, item_wrapper_class: 'inline', 
          collection: User.genders.keys %>

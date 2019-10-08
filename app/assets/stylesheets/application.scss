@@ -116,6 +116,13 @@ html,body{
   text-decoration: none;
   color: black;
 }
+  .card {
+    margin: 3px auto;
+  }
+
+  .card a:hover {
+    text-decoration: none;
+  }
 
 .items{
   display: flex;
