@@ -18,6 +18,20 @@
 // @import "date_wrapper";
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
+#footer {
+  background-color: #343a40;
+  color: #fff;
+  height: 60px;
+
+  .copyright {
+    text-align: center;
+
+    p {
+      line-height: 60px;
+    }
+  }
+}
+
 #qrcode {
   width:160px;
   height:260px;
