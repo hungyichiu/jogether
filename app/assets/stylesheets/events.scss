@@ -1,3 +1,190 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index.header {
+  background-color: #919190;
+  height: 500px;
+
+  .logo {
+    position: inline-block;
+    padding-top: 100px;
+    margin: 0 auto;
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .search {
+    padding-top: 30px;
+    border-style: none;
+    text-align: center;
+
+    .search-area {
+      display: inline-block;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+      .input {
+        display: inline-block;
+
+          #search {
+            border-radius: 5px;
+            padding: 10px 10px;
+            border-style: none;
+            background-color: transparent;
+            text-align: center;
+          }
+      }
+      .send-btn {
+        display: inline-block;
+
+        .send-tag {
+          border: 0;
+          color: #666666;
+          background-color: transparent;
+        }
+      }
+    
+  }
+}
+
+
+.index.categories {
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .step {
+        padding: 40px;
+        padding-top: 150px;
+        padding-right: -10px;
+        height: 355px;
+        overflow: hidden;
+        position: relative;
+        transition: .5s;
+        box-sizing: border-box;
+    }
+
+    .step:hover {
+        padding: 40px;
+    }
+
+    .step:hover p {
+        color: white;
+        transition: .5s;
+    }
+
+    .step-count, h3 {
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .step-count {
+        letter-spacing: 3px;
+    }
+
+    .step-count::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 3px;
+        background-color: white;
+        margin: 8px auto 30px 0;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 20px;
+        margin-top: 15px;
+        color: transparent;
+    }
+
+    i {
+        font-size: 400px;
+        color: rgba(0,0,0,.2)
+    }
+
+    .step:nth-child(1) {
+        background-color: #4370ff;
+    }
+
+    .step:nth-child(2) {
+        background-color: #587ffe;
+    }
+
+    .step:nth-child(3) {
+        background-color: #7f9dfd;
+    }
+
+    .intro {
+        position: absolute;
+        margin-right: 40px;
+        z-index: 1;
+    }
+
+    .bg-icon {
+        position: absolute;
+        bottom: -50px;
+        right: -40px;
+    }
+
+    .step:hover .bg-icon {
+        right: -70px;
+        transition: .5s;
+    }
+
+
+    .step:nth-child(1):hover {
+        background-color: #33aaff;
+    }
+
+    .step:nth-child(2):hover {
+        background-color: #1a99fe;
+    }
+
+    .step:nth-child(3):hover {
+        background-color: #1196fd;
+    }
+
+
+
+}
+
+
+@media screen and (min-width: 768px) { 
+    .index.categories {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .step {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) { 
+
+    .index.categories {
+        width: 100%;
+        flex-flow: row nowrap;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

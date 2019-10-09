@@ -1,121 +1,106 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<div class="index header">
+  <div class="logo">
+    <%= image_tag "new-logo-small.png" %>
+  </div>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Jotogether</title>
-  </head>
-  <body>
-    
-    <div class="container">
-       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="card mb-3">
-                    <img src="https://picsum.photos/800/300/?random=4" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">星巴克買一送一</h5>
-                      <p class="card-text">9/1 - 9/30 星巴克每天每一送一，我咖啡中毒了，快陪我一起買~!!都求你了QQ</p>
-                      <p class="card-text"><small class="text-muted">咖啡之友無限期招募~~</small></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                <div class="card mb-3">
-                    <img src="https://picsum.photos/800/300/?random=5" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">看畫展</h5>
-                      <p class="card-text">北美館聽說最近進了一批不錯的貨色...嘿嘿嘿...要不要跟我一起去體驗看看啊~ 不要怕，我絕對不是壞人啊^_^</p>
-                      <p class="card-text"><small class="text-muted">愛好藝術的大叔</small></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                <div class="card mb-3">
-                    <img src="https://picsum.photos/800/300/?random=6" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">0 陷阱！0 誤解！8 天重新認識 JavaScript</h5>
-                      <p class="card-text">將邀請 Kuro 大大分享前端密技 拯救你的錯誤觀念，成為你的職場救星！</p>
-                      <p class="card-text"><small class="text-muted">免費活動 座位有限 手刀報名</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    <%= render 'shared/frontend/sub_navbar' %>
-
-    <div class="iconwrap">
-      <%= link_to new_event_path do %>
-        <%= image_tag ("black-logo.png") %>
-      <% end %>
+  <div class="search">
+    <div class="search-area">
+      <div class="input">
+        <%= form_tag(events_path, :method => "get") do %>
+          <%= text_field_tag :search, nil ,placeholder:"搜尋活動，GO！" %>
+          
+      </div>
+      <div class="send-btn">
+        <% submit_tag "" ,:event_name => nil, class: "send-tag" %>
+          <% end %> 
+      </div>
     </div>
-
-    <div class="card text-center">
-      <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <%= link_to "最新活動", latest_events_path, class: "nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "最熱門", hot_events_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "即將截止", closing_events_path, class: "nav-link"  %>
-          </li>
-        </ul>
-      </div>
-
-      <div class="card-body">
-        <table class="table table-borderless">
-          <tbody>
-            <% @events.each do |event|%>
-            <tr>
-              <td class="border-bottom"><%= link_to event.event_name, event_path(event)%> <br>
-              報名截止日：<%= event.apply_end.strftime('%m/%d') %><br>
-              </td>
-            </tr>
-            <tr>
-              
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-      </div>
-    </div>  
-    <div>
-
-
     
+      
+  </div>
+</div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+<div class="index categories">
+  <div class="step">
+      <div class="intro">
+          <div class="step-count">
+              step 1
+          </div>
+          <h3>down a wallet</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, inventore doloribus! Ea.</p>
+      </div>
+      <div class="bg-icon">
+          <i class="fas fa-wallet"></i>
+      </div>
+  </div>
+  <div class="step">
+      <div class="intro">
+          <div class="step-count">
+              step 2
+          </div>
+          <h3>add bitcoin</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, inventore doloribus! Ea.</p>
+      </div>
+      <div class="bg-icon">
+          <i class="fas fa-chart-line"></i>
+      </div>
+  </div>
+  <div class="step">
+      <div class="intro">
+          <div class="step-count">
+              step 3
+          </div>
+          <h3>send/receive</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, inventore doloribus! Ea.</p>
+      </div>
+      <div class="bg-icon"><i class="fas fa-envelope-open-text"></i></div>
+  </div>
+</div>
 
 
 
 
 
-
+<div class="index categories">
+  <div class="category">
+    <%= link_to food_events_path do %>
+      <i class="fas fa-utensils"></i>
+      <div class="type">
+        美食
+      </div>
+    <% end %>
+  </div>
+  <div class="category">
+    <%= link_to art_events_path do %>
+      <i class="fas fa-palette"></i>
+      <div class="type">
+        藝文
+      </div>
+    <% end %>
+  </div>
+  <div class="category">
+    <%= link_to entertainment_events_path do %>
+      <i class="fas fas fa-chess"></i>
+      <div class="type">
+        娛樂
+      </div>
+    <% end %>
+  </div>
+  <div class="category">
+    <%= link_to learn_events_path do %>
+    <i class="fas fa-book"></i>
+    <div class="type">
+      學習
+    </div>
+    <% end %>
+  </div>
+  <div class="category">
+    <%= link_to sport_events_path do %>
+      <i class="fas fa-basketball-ball"></i>
+      <div class="type">
+        運動
+      </div>
+    <% end %>
+  </div>
+</div>

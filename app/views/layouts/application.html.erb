@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jogether</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,9 +22,9 @@
     <%= render 'shared/frontend/navbar' unless @disable_nav %>
     <%= render 'shared/frontend/flash' if notice %>
    <%# render './shared/frontend/navbar' %>
-    <div class="container">
-      <%= yield %>
-    </div>
+
+    <%= yield %>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -32,7 +35,7 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
     <!--for Fontawesome-->
-    <script src="https://kit.fontawesome.com/88a1bdb886.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f27e7e5892.js"></script>
   </body>
 
   

@@ -4,7 +4,7 @@
 //= require turbolinks
 
 
-$(document).ready(function () {
+$(document).on('turbolinks:load', function () {
   $(".qr-btn").click(function () {
     $('#exampleModalCenter').modal('toggle')
   })
