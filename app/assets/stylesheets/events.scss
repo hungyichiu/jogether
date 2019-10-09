@@ -18,6 +18,10 @@
     }
   }
 
+    .large-logo {
+        display: none;
+    }
+
   .search {
     padding-top: 30px;
     border-style: none;
@@ -52,6 +56,7 @@
     
   }
 }
+
 
 
 .index.categories {
@@ -168,6 +173,10 @@
 
 }
 
+.add-car {
+    display: none;
+}
+
 
 @media screen and (min-width: 768px) { 
     .index.categories {
@@ -177,14 +186,226 @@
     .step {
         width: 50%;
     }
+
+        .add-bubble {
+        display: block;
+        
+        .circle {
+        position: absolute;
+        border-radius: 50%;
+        animation-name: rotate;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        }
+
+        .circle:hover {
+        animation-name: scale;
+        transform-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: normal;
+        }
+
+        @keyframes scale {
+        25% {
+            transform: scale(1.4);
+        }
+        50% {
+            transform: scale(1.0);
+        }
+        75% {
+            transform: scale(1.2);
+        }
+        }
+
+        .car {
+        position: fixed;
+        z-index: -10;
+        width: 80px;
+        top: 100px;
+        animation-name: drive;
+        animation-duration: 8s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        }
+
+        .car img {
+        width: 100%;
+        height: auto;
+        }
+
+
+        .circle:nth-child(1) {
+        left: 5%;
+        top: 330px;
+        }
+
+        .circle:nth-child(2) {
+        left: 10%;
+        top: 360px;
+        }
+
+        .circle:nth-child(3) {
+        left: 22%;
+        top: 330px;
+        }
+
+        .circle:nth-child(4) {
+        left: 30%;
+        top: 420px;
+        }
+
+        .circle:nth-child(5) {
+        left: 42%;
+        top: 440px;
+        }
+
+        .circle:nth-child(6) {
+        left: 46%;
+        top: 350px;
+        }
+
+        .circle:nth-child(7) {
+        left: 54%;
+        top: 410px;
+        }
+
+        .circle:nth-child(8) {
+        left: 62%;
+        top: 420px;
+        }
+
+        .circle:nth-child(9) {
+        left: 73%;
+        top: 360px;
+        }
+
+        .circle:nth-child(10) {
+        left: 82%;
+        top: 450px;
+        }
+
+        .circle:nth-child(11) {
+        left: 90%;
+        top: 320px;
+        }
+
+
+        .xs {
+        width: 10px;
+        height: 10px;
+        transform-origin: 20% center; /*把中心點做偏移*/
+        }
+
+        .sm {
+        width: 30px;
+        height: 30px;
+        transform-origin: 58% center;
+        }
+
+        .md {
+        width: 60px;
+        height: 60px;
+        transform-origin: 45% center;
+        }
+
+        .lg {
+        width: 120px;
+        height: 120px;
+        transform-origin: 46% center;
+        }
+
+
+        .blue {
+        background-color: #87d2f5;
+        }
+
+        .red {
+        background-color: #e35d63;
+        }
+
+        .green {
+        background-color: #d6e6b5;
+        }
+
+        .orange {
+        background-color: #eea428;
+        }
+
+        .yellow {
+        background-color: #b373a7;
+        }
+
+
+        .time-xs {
+        animation-duration: 2s;
+        }
+
+        .time-sm {
+        animation-duration: 4s;
+        }
+
+        .time-md {
+        animation-duration: 6s;
+        }
+
+        .time-lg {
+        animation-duration: 8s;
+        }
+
+
+        .reverse {
+        animation-direction: reverse;
+        }
+
+
+        @keyframes rotate {
+        100% {
+            transform: rotate(-360deg);
+        }
+        }
+
+        @keyframes drive {
+        from {
+            left: -10%;
+        }
+        
+        to {
+            left: 150%;
+        }
+    }
+    }
 }
 
 @media screen and (min-width: 1200px) { 
 
+    .index.header{
+        .logo {
+            padding-top: 40px;
+            
+        }
+
+        .large-logo {
+            display: block;
+        }
+
+        .small-logo {
+            display: none;
+        }
+    }
+
+    .index.header .search .input #search {
+        width: 700px;
+    }
+
+    
+    
     .index.categories {
         width: 100%;
         flex-flow: row nowrap;
     }
+
 }
 
 

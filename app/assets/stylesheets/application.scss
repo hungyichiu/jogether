@@ -18,6 +18,12 @@
 // @import "date_wrapper";
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
+html,body{
+  font-family: 'Numans', sans-serif;
+  background-color: #feffdf;
+  background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); background-size: 30px 30px;
+}
+
 #footer {
   background-color: #343a40;
   color: #fff;
@@ -61,9 +67,6 @@
 
 }
 
-html,body{
-  font-family: 'Numans', sans-serif;
-  }
 
 .wrapp{
   margin-top: 10px;
