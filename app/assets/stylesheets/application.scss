@@ -13,10 +13,16 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
 // @import "date_wrapper";
 @import "reset";
 @import url('https://fonts.googleapis.com/css?family=Numans');
+// Bootstrap
+// @import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Some 3rd party
+
+// @import "bootstrap-datetimepicker-3";
 
 
 .field_with_errors {

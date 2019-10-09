@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       put :cancel_event
       put :close_event
       get :owner
+      get :share_link
     end
 
     collection do

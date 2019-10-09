@@ -1,3 +1,18 @@
 <h1>主揪資訊</h1>
 
-<%#= render 'shared/frontend/user_card', users: @user %>
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <%= avatar_tag(@user, class_name: "card-img", size: '300x300') %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">名字：<%= @user.name %></h5>
+        <p class="card-text">性別：<%= @user.gender %></p>
+        <p class="card-text"><i class="fas fa-mobile-alt"></i> <%= link_to @user.mobile, "#{ @user.mobile } " if @user.mobile.present? %></p>
+        <p class="card-text"><i class="fas fa-envelope-open-text"></i> <%= mail_to @user.email, "#{ @user.email }" %></p>
+        <p class="card-text">自我介紹：<%= @user.self_intro %></p>
+      </div>
+    </div>
+  </div>
+</div>

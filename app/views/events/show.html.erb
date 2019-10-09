@@ -39,7 +39,7 @@
           <th scope="col"><h2><%= f.object.event_name %></h2></th>
           <td>主揪：
             <%= link_to owner_event_path do %>
-              <%= avatar_tag(f.object.users.first, size: '50x50') %>
+              <%= avatar_tag(@event.owner, size: '50x50') %>
             <% end %>
           </td>
         </tr>
@@ -88,6 +88,10 @@
 
     <% if policy(@event).apply? %>
       <%= link_to "我要報名", apply_event_path, class: "btn btn-success", method: 'put' %>
+    <% end %>
+
+    <%= link_to share_link_event_path(@event), class: "btn btn-info" do %>
+      <i class="fas fa-share-alt"></i>
     <% end %>
 
     <hr />
