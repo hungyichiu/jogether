@@ -18,8 +18,11 @@
 // @import "date_wrapper";
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-
-
+#qrcode {
+  width:160px;
+  height:260px;
+  margin-top:15px;
+}
 
 .field_with_errors {
   display: inline-block;
@@ -276,5 +279,6 @@ html,body{
     color: #f00;
   }
 
-  .split{
+  .qr-link {
+    width: 100%;
   }

@@ -22,7 +22,6 @@ class EventsController < ApplicationController
 
       redirect_to events_path, notice: "活動建立成功"
     else
-      # flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
       render :new
     end
   end
@@ -30,6 +29,7 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @comment.event_id = @event.id
+    @link = request.original_url
   end
 
   def edit
@@ -63,6 +63,8 @@ class EventsController < ApplicationController
     Sidekiq::ScheduledSet.new.select {|job| job.klass == 'CheckOpenTimeUpJob' }.each do |job|
       job.delete if job.args == [{ "event_id" => @event.id }]
     end
+
+    redirect_to events_path, notice: "活動已取消"
   end
 
   def apply
@@ -129,10 +131,6 @@ class EventsController < ApplicationController
 
   def owner
     @user = @event.owner
-  end
-
-  def share_link
-    
   end
 
   private
