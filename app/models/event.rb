@@ -6,10 +6,11 @@ class Event < ApplicationRecord
   # scope :available, -> { where.not(event_status: 'cancelled').where.not(event_status: 'closed')}
   scope :available, -> { where( event_status: [1, 2])}
 
-  validates :event_name, :event_type, :apply_end, :event_start, :location, presence: true
+  validates :event_name, :event_type, :apply_end, :event_start, :event_end, :location, presence: true
 
   validates :apply_end, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
   validates_date :event_start, on_or_after: :apply_end
+  validates_date :event_end, on_or_after: :event_start
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs

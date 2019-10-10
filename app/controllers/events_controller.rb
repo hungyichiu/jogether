@@ -142,7 +142,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event)
     .permit(:event_name, :event_type, :apply_end, :fee,
-            :min_attend, :event_start, :event_status, :location, :image, :description)
+            :min_attend, :event_start, :event_end,:event_status, :location, :image, :description)
   end
 
   def check_login

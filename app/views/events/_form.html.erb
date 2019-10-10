@@ -22,8 +22,12 @@
 <div class="form-group">
   <div class="row">
     <div class="col-12 col-md-6">
-     <%= f.label '活動日期與時間'%>
+     <%= f.label '活動開始日期與時間'%>
       <%= f.datetime_field :event_start,class: 'form-control' %>
+    </div>
+      <div class="col-12 col-md-6">
+     <%= f.label '活動結束日期與時間'%>
+      <%= f.datetime_field :event_end,class: 'form-control' %>
     </div>
   </div>
 </div>
