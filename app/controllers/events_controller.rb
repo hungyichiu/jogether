@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new(min_attend: 1)
+    @disable_footer = true
   end
 
   def create

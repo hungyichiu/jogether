@@ -22,7 +22,7 @@ class Event < ApplicationRecord
   has_many :applied_participants_logs, -> { includes(:event_logs).where(role: 'member')}, class_name: 'EventLog'
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
-  enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
+  enum event_type: { sport: 0, food: 1, art: 2, learn: 3 }
   enum event_status: { open: 1, reached_min: 2, success: 3, fail: 4,cancelled: 5 }
   has_one_attached :image
 
