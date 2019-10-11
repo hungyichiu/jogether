@@ -24,12 +24,51 @@ html, body{
   height: 100%;
 }
 
+body { padding-top: 70px; }
+
+.wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  
+  .side-bar {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  
+  .wrap {
+    .side-bar {
+      display: block;
+      width: 30%;
+      position: fixed;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    .main {
+      width: 70%;
+      right: 0;
+      position: absolute;
+    }
+  }
+}
+
+
+
+
 #footer {
   background-color: #343a40;
   color: #fff;
   height: 60px;
   width: 100%;
   // position:absolute;
+  // position: fixed;
   // bottom:0px;
   // left:0px;
 

@@ -22,7 +22,18 @@
     <%= render 'shared/frontend/navbar' unless @disable_nav %>
     <%= render 'shared/frontend/flash' if notice %>
 
-    <%= yield %>
+    <div class="wrap">
+      <div class="side-bar">
+        <%= render 'shared/frontend/categories' %>
+      </div>
+
+      <div class="main">
+        <%= yield %>
+      </div>
+
+    </div>
+
+    
 
     <%= render 'shared/frontend/footer' unless @disable_footer %>
 

@@ -5,9 +5,10 @@
 
     .step {
         padding: 40px;
-        padding-top: 150px;
+        padding-top: 50px;
         padding-right: -10px;
-        height: 355px;
+        // height: 205px;
+        height: 22.8vh;
         overflow: hidden;
         position: relative;
         transition: .5s;
@@ -45,18 +46,20 @@
         color: #fff;
     }
 
+    a:hover {
+        color: #fff;
+    }
+
     h3 {
         font-size: 28px;
     }
 
     p {
-        font-size: 20px;
-        margin-top: 15px;
-        color: transparent;
+        display: none;
     }
 
     i {
-        font-size: 300px;
+        font-size: 200px;
         color: rgba(0,0,0,.2)
     }
 
@@ -84,12 +87,12 @@
 
     .bg-icon {
         position: absolute;
-        bottom: -50px;
-        right: -40px;
+        bottom: -20px;
+        right: -10px;
     }
 
     .step:hover .bg-icon {
-        right: -70px;
+        right: -20px;
         transition: .5s;
     }
 
@@ -112,24 +115,29 @@
 
 }
 
-// @media screen and (min-width: 768px) { 
-//     .categories {
-//         display: flex;
-//         flex-flow: row wrap;
-//     }
-//     .step {
-//         width: 50%;
-//     }
+@media screen and (max-width: 768px) { 
+    .categories {
+        display: none;
+    }
+}
 
-// }
 
-// @media screen and (min-width: 1200px) { 
+@media screen and (min-width: 768px) { 
+    .categories {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    .step {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 1200px) { 
   
-//     .categories {
-//         width: 100%;
-//         flex-flow: row nowrap;
-//     }
+    .categories {
+        width: 100%;
+        flex-flow: column nowrap;
+    }
 
-// }
-
-
+}
