@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
   def index
+    render layout: "index"
     # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
     @events = Event.available.order(created_at: :desc).search(params[:search])
   end

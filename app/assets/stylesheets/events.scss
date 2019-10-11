@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .index.header {
   background-color: #feffdf;
   background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); background-size: 30px 30px;
@@ -59,243 +60,99 @@
 
 
 
-.index.categories {
-    color: white;
-    display: flex;
-    flex-flow: column nowrap;
-
-    .step {
-        padding: 40px;
-        padding-top: 150px;
-        padding-right: -10px;
-        height: 355px;
-        overflow: hidden;
-        position: relative;
-        transition: .5s;
-        box-sizing: border-box;
-    }
-
-    .step:hover {
-        padding: 40px;
-    }
-
-    .step:hover p {
-        color: white;
-        transition: .5s;
-    }
-
-    .step-count, h3 {
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-
-    .step-count {
-        letter-spacing: 3px;
-    }
-
-    .step-count::after {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 3px;
-        background-color: white;
-        margin: 8px auto 30px 0;
-    }
-
-    a {
-        color: #fff;
-    }
-
-    h3 {
-        font-size: 28px;
-    }
-
-    p {
-        font-size: 20px;
-        margin-top: 15px;
-        color: transparent;
-    }
-
-    i {
-        font-size: 300px;
-        color: rgba(0,0,0,.2)
-    }
-
-    .step:nth-child(1) {
-        background-color: #bad7df;
-    }
-
-    .step:nth-child(2) {
-        background-color: #ffe2e2;
-    }
-
-    .step:nth-child(3) {
-        background-color: #e9e9e9;
-    }
-
-    .step:nth-child(4) {
-        background-color: #99ddcc;
-    }
-
-    .intro {
-        position: absolute;
-        margin-right: 40px;
-        z-index: 1;
-    }
-
-    .bg-icon {
-        position: absolute;
-        bottom: -50px;
-        right: -40px;
-    }
-
-    .step:hover .bg-icon {
-        right: -70px;
-        transition: .5s;
-    }
-
-
-    .step:nth-child(1):hover {
-        background-color: #bcdedd;
-    }
-
-    .step:nth-child(2):hover {
-        background-color: #e5bcbd;
-    }
-
-    .step:nth-child(3):hover {
-        background-color: #b3b2b2;
-    }
-
-    .step:nth-child(4):hover {
-        background-color: #73bc8c;
-    }
-
-}
-
-.add-car {
-    display: none;
-}
-
-
 @media screen and (min-width: 768px) { 
-    .index.categories {
-        display: flex;
-        flex-flow: row wrap;
-    }
-    .step {
-        width: 50%;
-    }
-
-        .add-bubble {
+    .add-bubble {
         display: block;
         
         .circle {
-        position: absolute;
-        border-radius: 50%;
-        animation-name: rotate;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+            position: absolute;
+            border-radius: 50%;
+            animation-name: rotate;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
         }
 
         .circle:hover {
-        animation-name: scale;
-        transform-duration: 1s;
-        animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out;
-        animation-direction: normal;
+            animation-name: scale;
+            transform-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-direction: normal;
         }
 
         @keyframes scale {
-        25% {
-            transform: scale(1.4);
+            25% {
+                transform: scale(1.4);
+            }
+            50% {
+                transform: scale(1.0);
+            }
+            75% {
+                transform: scale(1.2);
+            }
         }
-        50% {
-            transform: scale(1.0);
-        }
-        75% {
-            transform: scale(1.2);
-        }
-        }
-
-        .car {
-        position: fixed;
-        z-index: -10;
-        width: 80px;
-        top: 100px;
-        animation-name: drive;
-        animation-duration: 8s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        }
-
-        .car img {
-        width: 100%;
-        height: auto;
-        }
-
 
         .circle:nth-child(1) {
-        left: 5%;
-        top: 330px;
+            left: 5%;
+            top: 330px;
         }
 
         .circle:nth-child(2) {
-        left: 10%;
-        top: 360px;
+            left: 10%;
+            top: 360px;
         }
 
         .circle:nth-child(3) {
-        left: 22%;
-        top: 330px;
+            left: 22%;
+            top: 330px;
         }
 
         .circle:nth-child(4) {
-        left: 30%;
-        top: 420px;
+            left: 30%;
+            top: 420px;
         }
 
         .circle:nth-child(5) {
-        left: 42%;
-        top: 440px;
+            left: 42%;
+            top: 440px;
         }
 
         .circle:nth-child(6) {
-        left: 46%;
-        top: 350px;
+            left: 46%;
+            top: 350px;
         }
 
         .circle:nth-child(7) {
-        left: 54%;
-        top: 410px;
+            left: 54%;
+            top: 410px;
         }
 
         .circle:nth-child(8) {
-        left: 62%;
-        top: 420px;
+            left: 62%;
+            top: 420px;
         }
 
         .circle:nth-child(9) {
-        left: 73%;
-        top: 360px;
+            left: 73%;
+            top: 360px;
         }
 
         .circle:nth-child(10) {
-        left: 82%;
-        top: 450px;
+            left: 82%;
+            top: 450px;
         }
 
         .circle:nth-child(11) {
-        left: 90%;
-        top: 320px;
+            left: 90%;
+            top: 320px;
         }
 
 
         .xs {
-        width: 10px;
-        height: 10px;
-        transform-origin: 20% center; /*把中心點做偏移*/
+            width: 10px;
+            height: 10px;
+            transform-origin: 20% center; /*把中心點做偏移*/
         }
 
         .sm {
@@ -399,12 +256,7 @@
         width: 700px;
     }
 
-    
-    
-    .index.categories {
-        width: 100%;
-        flex-flow: row nowrap;
-    }
+
 
 }
 
