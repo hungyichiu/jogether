@@ -30,3 +30,13 @@ select#event_event_type {
 form > input.btn.btn-warning.btn-lg.btn-block {
   margin-bottom: 10px;
 }
+
+@media screen and (min-width: 768px) { 
+  .event-form {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,86 @@
+.event-show-header {
+  position: relative;
+
+  .event-img {
+    width: 100%;
+  }
+
+  .owner-photo {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    border: 3px solid #f8bb00;
+    border-radius: 50%;
+  }
+
+}
+
+.event-info {
+  padding: 10px;
+  position: relative;
+
+  .description {
+    display: block;
+    background-color: #e4c481;
+    color: #666;
+    margin: 10px;
+    word-break: break-all;
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #6fb587;
+    color: #fff;
+  }
+
+}
+
+.form-container {
+  .btn-confirm {
+    background-color: #6fb587;
+    color: #fff;
+  }
+}
+
+
+.apply_end {
+    text-align: center;
+    background-color: #ffe2e2;
+    padding-top: 5px;
+}
+
+
+
+/* Always set the map height explicitly to define the size of the div
+  * element that contains the map. */
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: #666;
+  /* position: absolute; */
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0;
+  /* margin: auto; */
+}
+
+.comment-area {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+@media screen and (min-width: 992px) { 
+  .form-container {
+    background-color: #fff;
+    margin: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .buttons {
+    padding: 10px;
+  }
+}

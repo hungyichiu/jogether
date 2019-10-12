@@ -83,10 +83,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def list
-    @events = Event.available.order(created_at: :desc)
-  end
-
   def add_like
     current_user.likes.create(user: current_user, event: @event) unless current_user.liked?(@event)
   end
@@ -110,10 +106,6 @@ class EventsController < ApplicationController
     find_event_type(:art)
   end
 
-  def entertainment
-    find_event_type(:entertainment)
-  end
-
   def learn
     find_event_type(:learn)
   end
@@ -124,11 +116,6 @@ class EventsController < ApplicationController
 
   def find_event_type(type)
     @events = Event.available.where(event_type: type).order(created_at: :desc)
-  end
-
-  def latest
-    @events = Event.available.order(created_at: :desc)
-    # render json: @events
   end
 
   def owner

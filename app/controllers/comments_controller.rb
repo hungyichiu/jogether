@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.event_id = params[:event_id]
 
     @comment.save
-
+    
     redirect_to event_path(@comment.event)
   end
 

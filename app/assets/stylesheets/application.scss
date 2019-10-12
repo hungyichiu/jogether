@@ -20,11 +20,13 @@
 
 html, body{
   font-family: 'Numans', sans-serif;
-  background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); background-size: 30px 30px;
+  background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); 
+  background-size: 30px 30px;
   height: 100%;
+  background-color: #feffdf;
 }
 
-body { padding-top: 70px; }
+body { padding-top: 66px; }
 
 .wrap {
   display: flex;
@@ -37,6 +39,7 @@ body { padding-top: 70px; }
 
   .main {
     width: 100%;
+    // background-color: #feffdf;
   }
 }
 
@@ -59,7 +62,9 @@ body { padding-top: 70px; }
   }
 }
 
-
+i {
+  margin-right: 5px;
+}
 
 
 #footer {
@@ -178,7 +183,7 @@ body { padding-top: 70px; }
   color: black;
 }
   .card {
-    margin: 3px auto;
+    margin-bottom: 3px;
   }
 
   .card a:hover {

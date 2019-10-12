@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   
-  get 'my/index', to: 'my#index'
   get 'my/like', to: 'my#like'
   get 'my/events', to: 'my#events'
   get 'my/events-applied', to: 'my#events_applied'
@@ -31,15 +30,10 @@ Rails.application.routes.draw do
     end
 
     collection do
-      get :list
       get :food
       get :art
-      get :entertainment
       get :learn
       get :sport
-      get :latest
-      get :hot
-      get :closing
     end
   end
 
