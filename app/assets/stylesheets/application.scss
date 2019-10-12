@@ -12,11 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 @import "reset";
 @import "bootstrap";
 // @import "date_wrapper";
 @import url('https://fonts.googleapis.com/css?family=Numans');
+@import "font-awesome";
 
 html, body{
   font-family: 'Numans', sans-serif;

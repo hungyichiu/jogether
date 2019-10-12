@@ -68,6 +68,7 @@ gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 gem 'whenever', '~> 1.0', require: false
 gem 'factory_bot_rails', '~> 5.1'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-datetimepicker-3'
