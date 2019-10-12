@@ -6,8 +6,16 @@ class EventsController < ApplicationController
   
   def index
     render layout: "index"
-    # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
-    @events = Event.available.order(created_at: :desc).search(params[:search])
+  end
+
+  def list
+    if params[:search]
+      byebug
+      @events = Event.available.order(created_at: :desc).search(params[:search])
+    else
+      @events = Event.available.order(created_at: :desc)
+      # flash[:notice] = "無查詢符合之項目" <-- 無作用 @@
+    end
   end
 
   def new
