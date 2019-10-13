@@ -7,17 +7,14 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="form-inline ml-auto">
-      <%# <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> %>
+    <div class="form-inline ml-auto">
       <%= form_tag(list_events_path, :method => "get" ) do %>
-        <%= text_field_tag :search, nil, placeholder: "Search" %>
-        <%= submit_tag "search" ,:event_name => nil %>
+        <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control mr-sm-2" %>
+        <%= button_tag type: "submit", :event_name => nil, class: "btn btn-outline-warning my-2 my-sm-0" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
       <% end %>
-      <%# <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button> %>
-    </form>
-
-        
-
+    </div>
 
     <ul class="navbar-nav">
 
@@ -41,7 +38,7 @@
             <%= link_to "註冊", new_user_registration_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to "登入", new_user_session_path, class: 'nav-link' %>
+          <%= link_to "登入", new_user_session_path, class: 'nav-link login-btn' %>
         </li>
       <% end %>
     </ul>

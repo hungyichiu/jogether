@@ -25,7 +25,6 @@ html, body{
   background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); 
   background-size: 30px 30px;
   height: 100%;
-  background-color: #feffdf;
 }
 
 body { padding-top: 66px; }
@@ -41,7 +40,6 @@ body { padding-top: 66px; }
 
   .main {
     width: 100%;
-    // background-color: #feffdf;
   }
 }
 
@@ -50,14 +48,14 @@ body { padding-top: 66px; }
   .wrap {
     .side-bar {
       display: block;
-      width: 30%;
+      width: 25%;
       position: fixed;
       display: flex;
       flex-flow: column nowrap;
     }
 
     .main {
-      width: 70%;
+      width: 75%;
       right: 0;
       position: absolute;
     }
@@ -69,30 +67,6 @@ i {
 }
 
 
-#footer {
-  background-color: #343a40;
-  color: #fff;
-  height: 60px;
-  width: 100%;
-  // position:absolute;
-  // position: fixed;
-  // bottom:0px;
-  // left:0px;
-
-  .copyright {
-    text-align: center;
-
-    p {
-      line-height: 60px;
-    }
-  }
-}
-
-#qrcode {
-  width:160px;
-  height:260px;
-  margin-top:15px;
-}
 
 .field_with_errors {
   display: inline-block;

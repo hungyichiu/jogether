@@ -1,7 +1,7 @@
-<div class="event-list">
-  <% events.each do |event| %>
+<% events.each do |event| %>
+  <div class="event-list">
     <%= link_to event_path(event) do %>
-      <div class="card event-card">
+      <div class="card event-card shadow">
         <%= activity_img(event, class_name: "card-img-top") %>
         <div class="card-body">
           <h5 class="card-title"><%= event.event_name %></h5>
@@ -12,7 +12,8 @@
           <p class="card-text"><small class="text-muted">目前報名人數：<%= event.applied_participants_logs.count %>人</small></p>
         </div>
       </div>
-    <% end %>
-  <% end %>
-</div>
+    <% end %> 
+  </div> 
+<% end %>
+
 

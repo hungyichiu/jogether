@@ -1,7 +1,42 @@
-@media screen and (min-width: 992px) { 
-    .event-card {
-      margin: 0 3px 3px;
-      width: 49%;
-      float: left;
-    }
+.main .event-card:nth-child(1), .main .form-container {
+  margin-top: 8px;
 }
+
+.event-card{
+  margin: 0 auto;
+  max-width: 750px;
+  position: relative;
+
+  .card-img {
+    height: 100%;
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
+  .status-tag {
+    background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
+    /* transform: rotateZ(45deg); */
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+.tag {
+    /* transform: rotateZ(45deg); */
+    font-size: 14px;
+    font-weight: normal;
+    transform: rotateZ(45deg);
+    width: 80px;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    color: #fff;
+    padding-left: 10px;
+  }
+
+}
+
+

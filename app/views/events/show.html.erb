@@ -1,7 +1,11 @@
-<div class="form-container">
+<div class="form-container shadow">
   <div class="event-show-header">
     <div class="event-img">
       <%= activity_img(@event) %>
+    </div>
+
+    <div class="tag">
+        <%= @event.event_type %>
     </div>
 
     <%= link_to owner_event_path, class: "owner-photo" do %>
@@ -12,7 +16,6 @@
   <div class="event-info">
     <h3>
     <%= @event.event_name %>
-    <span class="badge badge-secondary"><%= @event.event_type %></span>
     </h3>
 
     <div class="col description">
@@ -63,7 +66,7 @@
     </div>
 
     <!-- Button trigger qrcode -->
-    <button type="button" class="btn" data-toggle="modal" data-target="#eventQRCode">
+    <button type="button" class="btn qr-btn" data-toggle="modal" data-target="#eventQRCode">
       <i class="fas fa-share-alt"></i>
     </button>
 

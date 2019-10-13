@@ -10,7 +10,6 @@ class EventsController < ApplicationController
 
   def list
     if params[:search]
-      byebug
       @events = Event.available.order(created_at: :desc).search(params[:search])
     else
       @events = Event.available.order(created_at: :desc)
