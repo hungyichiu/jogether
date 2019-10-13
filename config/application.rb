@@ -13,6 +13,7 @@ module Jogether
     config.load_defaults 5.2
     config.eager_load_paths += %W( #{config.root}/app/jobs )
     config.i18n.default_locale = "zh-TW"
+    config.time_zone = "Asia/Taipei"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

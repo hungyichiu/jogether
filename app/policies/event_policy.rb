@@ -10,16 +10,12 @@ class EventPolicy
     event_owner(event) && (event.open? || event.reached_min?)
   end
 
-  # def destroy?
-  #   event_owner(event)
-  # end
-
   def cancel_event?
-    event_owner(event) 
+    event_owner(event) && (event.open? || event.reached_min?)
   end
 
-    def close_event?
-    event_owner(event) && (event.open? || event.reached_min?)
+  def close_event?
+    event_owner(event) && event.reached_min?
   end
 
   def view_participants?
@@ -30,11 +26,7 @@ class EventPolicy
     !event_owner(event) && !event_member(event) && (event.open? || event.reached_min?)
   end
 
-  def cancel_apply?
-    event_member(event) && (event.open? || event.reached_min?)
-  end
-
-  private
+  
   def event_owner(event)
     user&.raised?(event)
   end

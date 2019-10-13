@@ -1,19 +1,4 @@
 <h1><%= @event.event_name %></h1>
 <h4>團員名單</h4>
 
-<% @users.each do |user| %>
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <%= avatar_tag(user, class_name: "card-img", size: '300x300') %>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= user.name %></h5>
-          <p class="card-text"><i class="fas fa-mobile-alt"></i> <%= link_to user.mobile, "#{ user.mobile }" %></p>
-          <p class="card-text"><i class="fas fa-envelope-open-text"></i> <%= link_to user.email, "#{ user.email }" %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render 'shared/frontend/user_card', users: @users %>
