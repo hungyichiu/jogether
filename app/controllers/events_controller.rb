@@ -38,6 +38,8 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @comment.event_id = @event.id
+
+    # @comment = @event.comments.build
     @link = request.original_url
   end
 

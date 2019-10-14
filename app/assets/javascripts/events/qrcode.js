@@ -29,7 +29,3 @@ $(document).on('turbolinks:load', function () {
       }
     });
 })
-
-$(document).ready(function () {
-  var clipboard = new Clipboard('[class^="clipboard-btn"]');
-});
