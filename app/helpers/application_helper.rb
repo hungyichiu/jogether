@@ -16,7 +16,9 @@ module ApplicationHelper
   end
 
   def if_liked(event)
-    if current_user && current_user.liked?(event)
+    # if current_user && current_user.liked?(event)
+    if current_user&.liked?(event)
+    
       link_to dislike_event_path(event),
       method: 'put',
       class: "ajxbtn btn redbg",
