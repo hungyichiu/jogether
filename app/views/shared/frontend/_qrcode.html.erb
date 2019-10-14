@@ -12,20 +12,16 @@
 
         <div id="qrcode"></div>
         <%= text_field_tag(:text, value="#{ @link }", class: "qr-link") %>
-        <button onclick="copyFunction()" class="btn btn-sm btn-warning">複製</button>
-        
+        <input type="button" onClick="copyUrl2()" value="複製" class="btn btn-sm btn-warning"/>
       </div>
     </div>
   </div>
 </div>
 
 <script >
-$(document).ready(function(){
-function copyFunction() {
-  var copyText = $("#text");
-  copyText.select();
-  document.execCommand("Copy");
-  alert("Copied the text: " + copyText.value);
-}
-  });
+  function copyUrl2() {
+    var Url2 = document.getElementById("text");
+    Url2.select(); // 選擇物件
+    document.execCommand("Copy"); // 執行瀏覽器複製命令
+  }
 </script>
