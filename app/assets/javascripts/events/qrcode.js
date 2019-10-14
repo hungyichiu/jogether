@@ -33,7 +33,3 @@ $(document).on('turbolinks:load', function () {
 $(document).ready(function () {
   var clipboard = new Clipboard('[class^="clipboard-btn"]');
 });
-
-< script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js" ></script >
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>

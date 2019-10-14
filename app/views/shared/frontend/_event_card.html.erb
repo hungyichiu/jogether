@@ -10,16 +10,18 @@
           <h5 class="card-title"><%= event.event_name %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar-alt"></i><%= "#{event.event_start}" %>~<%= "#{event.event_end}" %></h6>
           <p class="card-text">活動說明：<%= event.description %></p>
-          <%= link_to "更多內容", event_path(event), class:"btn btn-warning btn-sm" %>
+          <%= link_to "活動詳情", event_path(event), class:"btn btn-warning btn-sm" %>
           <%= if_liked(event) %>
         </div>
       </div>
     </div>
   </div>
   <div class="status-tag <%#= event.event_status == 'open' ? 'open_tag' : 'reach_min_tag' %>"></div>
-  <div class="tag">
-    <%= event.event_status %>
-  </div>
+   <div class="tagwrap"> 
+     <div class="tag">
+       <%= event.event_status %>
+     </div>
+   </div>
 </div>
 
 <% end %>
