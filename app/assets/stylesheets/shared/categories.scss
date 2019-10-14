@@ -86,9 +86,11 @@
     }
 
     .bg-icon {
+        width: 100%;
         position: absolute;
         bottom: -20px;
         right: -10px;
+        text-align: right;
     }
 
     .step:hover .bg-icon {
