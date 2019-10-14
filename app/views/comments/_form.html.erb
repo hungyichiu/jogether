@@ -1,26 +1,25 @@
 <h6>我要留言！</h6>
 
-<%#= form_with model: @comment, local: true do |f| %>
+<%= form_with model: @comment, url: event_comments_path(@event.id),  local: true do |f| %>
+<%#= form_with model: [@event, @comment], local: true do |f| %>
 
   <div class="form-group">
     <label for="name">暱稱：
-      <%# <input class="form-control" type="text" placeholder="Default input" id="bootstrap-overrides"> %>
-      <%#= f.text_field :name, class: 'form-control', id: "bootstrap-overrides", input_html: {value: current_user.name} %>
+      <%= f.text_field :name, class: 'form-control', id: "bootstrap-overrides", input_html: {value: current_user.name} %>
     </label>
   </div>
 
   <div class="form-group">
     <label for="body">留言：
       <div class="form-group">
-        <%# <textarea class="form-control" id="bootstrap-overrides" rows="3"></textarea> %>
-        <%#= f.text_area :body, class: 'form-control', id: "bootstrap-overrides" %>
+        <%= f.text_area :body, class: 'form-control', id: "bootstrap-overrides" %>
       </div>
     </label>
   </div>
 
 <%# <button type="submit" class="btn btn-warning btn-sm">Submit</button> %>
-  <%#= f.submit "送出", class: "btn btn-warning btn-sm" %>
-<%# end %>
+  <%= f.submit "送出", class: "btn btn-warning btn-sm" %>
+<% end %>
 
 
 

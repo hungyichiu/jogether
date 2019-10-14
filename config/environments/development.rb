@@ -63,7 +63,10 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+
   config.action_mailer.smtp_settings = {
+
     address: ENV['smtp_address'],
     port: 587,
     domain: '5xruby.tw',

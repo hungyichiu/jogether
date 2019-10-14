@@ -11,23 +11,17 @@
       <div class="modal-body">
 
         <div id="qrcode"></div>
-        <%= text_field_tag(:text, value="#{ @link }", class: "qr-link", id: "bar#{ @event.id }") %>
-        <button 
-          class="clipboard-btn<%= @event.id %> btn btn-warning btn-sm"
-          data-clipboard-action="copy"
-          data-clipboard-target="#bar<%= @event.id %>">
-          複製
-        </button>
-        
+        <%= text_field_tag(:text, value="#{ @link }", class: "qr-link") %>
+        <input type="button" onClick="copyUrl2()" value="複製" class="btn btn-sm btn-warning"/>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  $(document).ready(function(){  
-    var clipboard = new Clipboard('[class^="clipboard-btn"]');
-  });
+<script >
+  function copyUrl2() {
+    var Url2 = document.getElementById("text");
+    Url2.select(); // 選擇物件
+    document.execCommand("Copy"); // 執行瀏覽器複製命令
+  }
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
