@@ -14,7 +14,7 @@ class Event < ApplicationRecord
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: 'user'
@@ -27,7 +27,11 @@ class Event < ApplicationRecord
   has_one_attached :image
 
   # after_commit :check_open_time_up_job
-
+  # in the future,可以把 job 放在 model。但是這個專案很多 after_commit，先移到 controller比較單純
+  # def check_open_time_up_job
+  #   job = CheckOpenTimeUpJob.perform_at(apply_end, id)
+  # end
+  
   def owner
     # event_logs.where(role: 1).first.user
     event_logs.owner.first.user
@@ -42,10 +46,7 @@ class Event < ApplicationRecord
     end
   end
 
-  # in the future,可以把 job 放在 model。但是這個專案很多 after_commit，先移到 controller比較單純
-  # def check_open_time_up_job
-  #   job = CheckOpenTimeUpJob.perform_at(apply_end, id)
-  # end
+ 
 
   include AASM
   aasm(column: :event_status, enum: true)do 
