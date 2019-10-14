@@ -1,0 +1,71 @@
+<div class="event-form shadow">
+  <%= form_with model: event, local: true do |f| %>
+    
+  
+      <div class="form-group img-upload">
+
+        <label for="image">挑一張活動照片或是示意圖吧！
+          <%= f.file_field :image, class: 'form-control-file', type: 'file', id:"pictureInput" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="event_name">活動名稱
+          <%= f.text_field :event_name, class: 'form-control', required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="event_type">活動類型
+          <%= f.select :event_type, options_for_select(Event.event_types.keys), required: true, class: 'form-control'%> 
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="min_attend">最低成團人數(達到人數後，我們會寄信提醒您)
+          <%= f.text_field :min_attend, class: 'form-control', required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="min_attend">預估費用
+          <%= f.text_field :fee, class: 'form-control', id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="event_start">活動開始日期與時間
+          <%= f.datetime_field :event_start, class: 'form-control',required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="event_end">活動結束日期與時間
+          <%= f.datetime_field :event_end, class: 'form-control',required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="location">活動地點
+          <%= f.text_field :location, class: 'form-control',required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="apply_end">揪團截止日期與時間
+          <%= f.datetime_field :apply_end, class: 'form-control',required: true, id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="description">活動說明或備註(多介紹一下活動，會讓更多人有興趣喔！)
+          <%= f.text_area :description, class: 'form-control', id: "bootstrap-overrides" %>
+        </label>
+      </div>
+
+      <%= f.submit "送出", class: "btn btn-warning btn-lg btn-block" %>
+    
+
+  <% end %>
+</div>
+

@@ -1,0 +1,47 @@
+.event-form {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-group label {
+  width: 100%;
+}
+
+#bootstrap-overrides.form-control {
+  width: 100% !important;
+}
+
+select#event_event_type {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-group.img-upload {
+  height: 80px;
+  padding-top: 20px;
+}
+
+form > input.btn.btn-warning.btn-lg.btn-block {
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) { 
+  .event-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 75%;
+    margin: 0 auto;
+  }
+}

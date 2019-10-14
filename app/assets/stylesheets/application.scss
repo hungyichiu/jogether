@@ -12,11 +12,60 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
-@import "bootstrap";
-// @import "date_wrapper";
-@import "reset";
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import "reset";
+@import "bootstrap";
+// @import "date_wrapper";
+@import url('https://fonts.googleapis.com/css?family=Numans');
+@import "font-awesome";
+
+html, body{
+  font-family: 'Numans', sans-serif;
+  background-image: linear-gradient(0deg, #eee 1px, transparent 1px),linear-gradient(90deg, #eee 1px, transparent 1px); 
+  background-size: 30px 30px;
+  height: 100%;
+}
+
+body { padding-top: 66px; }
+
+.wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  
+  .side-bar {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  
+  .wrap {
+    .side-bar {
+      display: block;
+      width: 25%;
+      position: fixed;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    .main {
+      width: 75%;
+      right: 0;
+      position: absolute;
+    }
+  }
+}
+
+i {
+  margin-right: 5px;
+}
+
 
 
 .field_with_errors {
@@ -42,13 +91,6 @@
 
 }
 
-html,body{
-  background-color: #ffffff !important;
-  background-size: cover;
-  // background-repeat: no-repeat;
-  height: 100%;
-  font-family: 'Numans', sans-serif;
-  }
 
 .wrapp{
   margin-top: 10px;
@@ -117,7 +159,7 @@ html,body{
   color: black;
 }
   .card {
-    margin: 3px auto;
+    margin-bottom: 3px;
   }
 
   .card a:hover {
@@ -272,7 +314,4 @@ html,body{
   .whitebg{
     background-color:#fff;
     color: #f00;
-  }
-
-  .split{
   }

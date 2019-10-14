@@ -1,15 +1,14 @@
-<h1>我的收藏</h1>
+<h4 class="mg-10">我的收藏</h4>
 
 <% @events.each do |event| %>
-  <div class="card">
+  <div class="card event-card shadow">
     <%= activity_img(event, class_name: "card-img-top") %>
     <div class="card-body">
       <h5 class="card-title"><%= event.event_name %></h5>
-      <p class="card-text"><i class="far fa-clock"></i><%= "#{event.event_start}" %></p>
-      <p class="card-text">活動類型：<%= event.event_type %></p>
-      <p class="card-text"><%= event.description %></p>
-      <%= link_to "活動詳情", event_path(event), class:"btn btn-primary" %>
-      <%= link_to "刪除收藏", dislike_event_path(event), class:"btn btn-warning", method: 'put' %>
+      <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar-alt"></i><%= "#{event.event_start}" %>~<%= "#{event.event_end}" %></h6>
+      <p class="card-text">活動說明：<%= event.description %></p>
+      <%= link_to "活動詳情", event_path(event), class:"btn btn-warning" %>
+      <%= link_to "刪除收藏", dislike_event_path(event), class:"btn btn-secondary", method: 'put' %>
     </div>
   </div>
 <% end %>

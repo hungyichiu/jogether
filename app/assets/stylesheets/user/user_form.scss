@@ -1,0 +1,35 @@
+#user_name, #user_email, #user_mobile, #user_self_intro, #user_password, #user_password_confirmation {
+  width: 100% !important;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.optional.user_avatar.form-group-valid {
+  margin: 10px;
+}
+
+.form-check-input.radio_buttons.required {
+  margin-left: 20px;
+}
+
+#edit_user > img {
+  margin: 10px;
+}
+
+#edit_user > div.form-actions > input {
+  width: 92%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.user-form {
+  background-color: #fff;
+}
+
+@media screen and (min-width: 768px) { 
+  .user-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 75%;
+    margin: 0 auto 10px;
+  }
+}

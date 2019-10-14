@@ -1,16 +1,20 @@
 class Event < ApplicationRecord
+  extend FriendlyId
+  friendly_id :event_num_generator, use: :slugged
+
   acts_as_paranoid
   # scope :available, -> { where.not(event_status: 'cancelled').where.not(event_status: 'closed')}
   scope :available, -> { where( event_status: [1, 2])}
 
-  validates :event_name, :event_type, :apply_end, :event_start, :location, presence: true
+  validates :event_name, :event_type, :apply_end, :event_start, :event_end, :location, presence: true
 
   validates :apply_end, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
   validates_date :event_start, on_or_after: :apply_end
+  validates_date :event_end, on_or_after: :event_start
 
   has_many :event_logs, dependent: :destroy
   has_many :users, through: :event_logs
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: 'user'
@@ -18,15 +22,21 @@ class Event < ApplicationRecord
   has_many :applied_participants_logs, -> { includes(:event_logs).where(role: 'member')}, class_name: 'EventLog'
   has_many :applied_participants, through: :applied_participants_logs, source: :user
 
-  # has_one :owner_log, -> { includes(:event_logs).where(role: 'owner')}, through: :event_log, class_name: 'EventLog'
-  # has_one :owner, through: :owner_log, source: :user
-
-
-  enum event_type: { sport: 0, food: 1, art: 2, entertainment: 3, learn: 4 }
+  enum event_type: { sport: 0, food: 1, art: 2, learn: 3 }
   enum event_status: { open: 1, reached_min: 2, success: 3, fail: 4,cancelled: 5 }
   has_one_attached :image
 
   # after_commit :check_open_time_up_job
+  # in the future,可以把 job 放在 model。但是這個專案很多 after_commit，先移到 controller比較單純
+  # def check_open_time_up_job
+  #   job = CheckOpenTimeUpJob.perform_at(apply_end, id)
+  # end
+  
+  def owner
+    # event_logs.where(role: 1).first.user
+    event_logs.owner.first.user
+    # users.first
+  end
 
   def self.search(search) #self.はUser.を意味する
     if search
@@ -36,10 +46,7 @@ class Event < ApplicationRecord
     end
   end
 
-  # in the future,可以把 job 放在 model。但是這個專案很多 after_commit，先移到 controller比較單純
-  # def check_open_time_up_job
-  #   job = CheckOpenTimeUpJob.perform_at(apply_end, id)
-  # end
+ 
 
   include AASM
   aasm(column: :event_status, enum: true)do 
@@ -91,6 +98,18 @@ class Event < ApplicationRecord
         end
       end
     end
+  end
+
+  private
+  def event_num_generator
+    if persisted?
+      event_create_date = created_at.to_s[0..9].delete('-')
+    else
+      event_create_date = Time.now.to_s[0..9].delete('-')
+    end
+
+    random_num = [*'A'..'Z', *0..9].sample(8).join
+    "#{event_create_date}-#{random_num}"
   end
 
 end
