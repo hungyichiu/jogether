@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'my/events-raised', to: 'my#events_raised'
 
   resources :events do
+    resources :comments
     member do
       put :apply
       put :cancel_apply
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
       get :view_participants
       put :cancel_event
       put :close_event
+      get :owner
     end
 
     collection do

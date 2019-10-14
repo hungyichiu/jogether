@@ -1,7 +1,11 @@
 class HardWorkJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(user_id)
+    user = User.find(user_id)
+  end
+
+  def self.go(user_id)
+    user = User.find(user_id)
   end
 end

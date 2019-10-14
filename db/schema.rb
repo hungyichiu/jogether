@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_020602) do
+ActiveRecord::Schema.define(version: 2019_10_08_142426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2019_10_05_020602) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id"
+  end
+
   create_table "event_logs", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "user_id"
@@ -51,12 +60,10 @@ ActiveRecord::Schema.define(version: 2019_10_05_020602) do
   create_table "events", force: :cascade do |t|
     t.string "event_name"
     t.integer "event_type"
-    t.date "apply_end"
+    t.datetime "apply_end"
     t.decimal "fee"
-    t.integer "max_attend"
     t.integer "min_attend"
-    t.date "event_start"
-    t.date "event_end"
+    t.datetime "event_start"
     t.integer "event_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -65,15 +72,6 @@ ActiveRecord::Schema.define(version: 2019_10_05_020602) do
     t.integer "participants", default: 0
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_favorites_on_event_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -109,15 +107,15 @@ ActiveRecord::Schema.define(version: 2019_10_05_020602) do
     t.string "fb_token"
     t.string "google_uid"
     t.string "google_token"
+    t.text "self_intro"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "events"
   add_foreign_key "event_logs", "events"
   add_foreign_key "event_logs", "users"
-  add_foreign_key "favorites", "events"
-  add_foreign_key "favorites", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "events"
   add_foreign_key "likes", "users"

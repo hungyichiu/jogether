@@ -16,7 +16,6 @@ class User < ApplicationRecord
 
   enum gender: { "男": 0, "女": 1 }
 
-  enum user_level: { normal: 0, admin: 1 }
   has_one_attached :avatar
 
   def applied?(event)

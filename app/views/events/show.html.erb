@@ -29,29 +29,37 @@
     <div class="event-img">
       <%= activity_img(@event) %>
     </div>
+   
+
     <%= simple_form_for @event do |f| %>
     <table class="table">
 
       <thead>
         <tr>
-          <th scope="col" colspan="2"><h2><%= f.object.event_name %></h2></th>
+          <th scope="col"><h2><%= f.object.event_name %></h2></th>
+          <td>主揪：
+            <%= link_to owner_event_path do %>
+              <%= avatar_tag(f.object.users.first, size: '50x50') %>
+            <% end %>
+          </td>
+        </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">報名截止</th>
-          <td><%= f.object.apply_end %></td>
+          <td colspan="2"><%= f.object.apply_end %></td>
         </tr>
         <tr>
           <th scope="row">活動種類</th>
           <td><%= f.object.event_type %></td>
         </tr>
         <tr>
-          <th scope="row">活動日期</th>
-          <td><%= f.object.event_start %> ~ <%= f.object.event_end %></td>
+          <th scope="row">活動日期與時間</th>
+          <td><%= f.object.event_start %></td>
         </tr>
         <tr>
-          <th scope="row">揪團人數(最低成團人數~人數上限)</th>
-          <td><%= f.object.min_attend %>人 ~ <%= f.object.max_attend %>人</td>
+          <th scope="row">揪團人數(最低成團人數)</th>
+          <td><%= f.object.min_attend %>人</td>
         </tr>
         <tr>
           <th scope="row">活動說明</th>
@@ -66,20 +74,30 @@
     <% end %>
 
     <div id="map"></div>
-    <% if user_signed_in? && policy(@event).edit? %>
+    <% if user_signed_in? && policy(@event).view_participants? %>
       <%= link_to "檢視團員名單", view_participants_event_path(@event), class: "btn btn-info"%>
+    <% end %>
+    <% if user_signed_in? && policy(@event).edit? %>
       <%= link_to "編輯活動", edit_event_path(@event), class: "btn btn-primary"%>
-      <%#= link_to "刪除活動", event_path(@event), class: "btn btn-danger", method: 'delete', data: {confirm: "確定刪除活動？"} %>
-      <%= link_to "收團！確認出團！", close_event_event_path(@event), class: "btn btn-danger", method: 'put', data: {confirm: "確定收團？不再多找些人？"} %>
       <%= link_to "取消活動", cancel_event_event_path(@event), class: "btn btn-dark", data: {confirm: "確定取消活動？"}, method: 'put' %>
+    <% end %>
+
+    <% if user_signed_in? && policy(@event).close_event? %>
+      <%= link_to "收團！確認出團！", close_event_event_path(@event), class: "btn btn-danger", method: 'put', data: {confirm: "確定收團？不再多找些人？"} %>
     <% end %>
 
     <% if policy(@event).apply? %>
       <%= link_to "我要報名", apply_event_path, class: "btn btn-success", method: 'put' %>
     <% end %>
-    <% if user_signed_in? && policy(@event).cancel_apply? %>
-      <%= link_to "取消報名", cancel_apply_event_path, class: "btn btn-info", method: 'put'  %>
-    <% end %>
+
+    <hr />
+
+    <!-- 留言區 -->
+    <h3>留言區</h3>
+    <hr />
+    <%= render partial: 'events/comment', collection: @event.comments.reverse %>
+    <hr />
+    <%= render partial: 'comments/form' %>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
