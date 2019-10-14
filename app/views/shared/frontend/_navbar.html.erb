@@ -1,54 +1,46 @@
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <%= link_to events_path do %>
-      <%= image_tag "yellow-logo.png", size: '50x50' %>
+      <%= image_tag "new-logo-xs.png", size: '50x50' %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to "看看現在有哪些活動吧！", list_events_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= form_tag(events_path, :method => "get", :class => "form-inline my-2 my-lg-0") do %>
-            <%= text_field_tag :search, nil ,placeholder:"search", class:"texttag" %>
-            <%#= submit_tag "search" ,:event_name => nil, class: "btn btn-sm btn-outline-success my-2 my-sm-0" %>
-          <% end %> 
-        </li>
-      </ul>
-
-        
-
-      <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-        
-          <li class="nav-item">
-            <%= link_to my_index_path, class: 'nav-link' do %>
-              <%= avatar_tag(current_user, class_name: 'nav-avatar') %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "我報名的活動", my_events_applied_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "我主揪的活動", my_events_raised_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "我的收藏", my_like_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "登出", destroy_user_session_path, class: 'nav-link', method: 'delete' %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "註冊", new_user_registration_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "登入", new_user_session_path, class: 'nav-link' %>
-          </li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="form-inline ml-auto">
+      <%= form_tag(list_events_path, :method => "get" ) do %>
+        <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control mr-sm-2" %>
+        <%= button_tag type: "submit", :event_name => nil, class: "btn btn-outline-warning my-2 my-sm-0" do %>
+          <i class="fas fa-search"></i>
         <% end %>
-      </ul>
+      <% end %>
     </div>
-  </nav>
+
+    <ul class="navbar-nav">
+
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= avatar_tag(current_user, class_name: 'nav-avatar') %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "開始揪團！", new_event_path, class: "dropdown-item" %>
+            <%= link_to "我主揪的活動", my_events_raised_path, class: "dropdown-item" %>
+            <%= link_to "我報名的活動", my_events_applied_path, class: "dropdown-item" %>
+            <%= link_to "我的收藏", my_like_path, class: "dropdown-item" %>
+            <%= link_to "編輯會員資料", edit_user_registration_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "登出", destroy_user_session_path, class: "dropdown-item", method: 'delete' %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+            <%= link_to "註冊", new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "登入", new_user_session_path, class: 'nav-link login-btn' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

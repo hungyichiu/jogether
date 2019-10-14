@@ -1,9 +1,6 @@
 class MyController < ApplicationController
   before_action :authenticate_user!
   
-  def index
-  end
-
   def like
     @events = current_user.like_events.order(created_at: :desc)
     # HardWorkJob.perform_later(current_user.id)

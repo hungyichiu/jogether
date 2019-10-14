@@ -1,22 +1,19 @@
 <% events.each do |event| %>
-  <div class="card mb-3">
+  <div class="event-list">
     <%= link_to event_path(event) do %>
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <%= activity_img(event, class_name:"card-img") %>
+      <div class="card event-card shadow">
+        <%= activity_img(event, class_name: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= event.event_name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar-alt"></i><%= "#{event.event_start}" %>~<%= "#{event.event_end}" %></h6>
+          <p class="card-text">活動說明：<%= event.description %></p>
+          <p class="card-text">揪團進度：<%= event.event_status %></p>
+          <%# 比event_card多了看報名人數這行 %>
+          <p class="card-text"><small class="text-muted">目前報名人數：<%= event.applied_participants_logs.count %>人</small></p>
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%= event.event_name %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              <i class="far fa-clock"></i><%= "#{event.event_start}" %>
-            </h6>
-            <p class="card-text">類型：<%= event.event_type %></p>
-            <p class="card-text"><%= event.description %></p>
-            <p class="card-text"><small class="text-muted">活動狀態：<%= event.event_status %>  目前報名人數：<%= event.applied_participants_logs.count %>人</small></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+      </div>
+    <% end %> 
+  </div> 
 <% end %>
+
+

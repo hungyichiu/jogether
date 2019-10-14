@@ -1,0 +1,143 @@
+.categories {
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .step {
+        padding: 40px;
+        padding-top: 50px;
+        padding-right: -10px;
+        // height: 205px;
+        height: 23vh;
+        overflow: hidden;
+        position: relative;
+        transition: .5s;
+        box-sizing: border-box;
+    }
+
+    .step:hover {
+        padding: 40px;
+    }
+
+    .step:hover p {
+        color: white;
+        transition: .5s;
+    }
+
+    .step-count, h3 {
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .step-count {
+        letter-spacing: 3px;
+    }
+
+    .step-count::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 3px;
+        background-color: white;
+        margin: 8px auto 30px 0;
+    }
+
+    a {
+        color: #fff;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    p {
+        display: none;
+    }
+
+    i {
+        font-size: 150px;
+        color: rgba(0,0,0,.2)
+    }
+
+    .step:nth-child(1) {
+        background-color: #bad7df;
+    }
+
+    .step:nth-child(2) {
+        background-color: #ffe2e2;
+    }
+
+    .step:nth-child(3) {
+        background-color: #e9e9e9;
+    }
+
+    .step:nth-child(4) {
+        background-color: #99ddcc;
+    }
+
+    .intro {
+        position: absolute;
+        margin-right: 40px;
+        z-index: 1;
+    }
+
+    .bg-icon {
+        position: absolute;
+        bottom: -20px;
+        right: -10px;
+    }
+
+    .step:hover .bg-icon {
+        right: -20px;
+        transition: .5s;
+    }
+
+
+    .step:nth-child(1):hover {
+        background-color: #bcdedd;
+    }
+
+    .step:nth-child(2):hover {
+        background-color: #e5bcbd;
+    }
+
+    .step:nth-child(3):hover {
+        background-color: #b3b2b2;
+    }
+
+    .step:nth-child(4):hover {
+        background-color: #73bc8c;
+    }
+
+}
+
+@media screen and (max-width: 768px) { 
+    .categories {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 768px) { 
+    .categories {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    .step {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 1200px) { 
+  
+    .categories {
+        width: 100%;
+        flex-flow: column nowrap;
+    }
+
+}

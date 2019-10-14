@@ -1,0 +1,16 @@
+.navbar-collapse {
+    width: 90%;
+}
+
+#navbarSupportedContent > div > form > button:hover {
+    color: #fff;
+}
+
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        left: -80px;
+        text-align: right;
+    }
+
+}
+

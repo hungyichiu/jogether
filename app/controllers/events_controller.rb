@@ -5,12 +5,21 @@ class EventsController < ApplicationController
   before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
   
   def index
-    # @events = Event.where.not(event_status: 'cancelled').search(params[:search])
-    @events = Event.available.order(created_at: :desc).search(params[:search])
+    render layout: "index"
+  end
+
+  def list
+    if params[:search]
+      @events = Event.available.order(created_at: :desc).search(params[:search])
+    else
+      @events = Event.available.order(created_at: :desc)
+      # flash[:notice] = "無查詢符合之項目" <-- 無作用 @@
+    end
   end
 
   def new
     @event = Event.new(min_attend: 1)
+    @disable_footer = true
   end
 
   def create
@@ -22,7 +31,6 @@ class EventsController < ApplicationController
 
       redirect_to events_path, notice: "活動建立成功"
     else
-      # flash.now[:notice] = "輸入的資訊有問題喔，請再次確認"
       render :new
     end
   end
@@ -30,6 +38,7 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @comment.event_id = @event.id
+    @link = request.original_url
   end
 
   def edit
@@ -63,6 +72,8 @@ class EventsController < ApplicationController
     Sidekiq::ScheduledSet.new.select {|job| job.klass == 'CheckOpenTimeUpJob' }.each do |job|
       job.delete if job.args == [{ "event_id" => @event.id }]
     end
+
+    redirect_to events_path, notice: "活動已取消"
   end
 
   def apply
@@ -77,10 +88,6 @@ class EventsController < ApplicationController
       EventLog.create(event: @event, user: current_user, role: 'member')
       redirect_to event_path, notice: "報名成功"
     end
-  end
-
-  def list
-    @events = Event.available.order(created_at: :desc)
   end
 
   def add_like
@@ -106,10 +113,6 @@ class EventsController < ApplicationController
     find_event_type(:art)
   end
 
-  def entertainment
-    find_event_type(:entertainment)
-  end
-
   def learn
     find_event_type(:learn)
   end
@@ -122,25 +125,20 @@ class EventsController < ApplicationController
     @events = Event.available.where(event_type: type).order(created_at: :desc)
   end
 
-  def latest
-    @events = Event.available.order(created_at: :desc)
-    # render json: @events
+  def owner
+    @user = @event.owner
   end
-
-  # def owner
-  #   @user = self.users.first
-  # end
 
   private
 
   def find_event
-    @event = Event.find(params[:id])
+    @event = Event.friendly.find(params[:id])
   end
 
   def event_params
     params.require(:event)
     .permit(:event_name, :event_type, :apply_end, :fee,
-            :min_attend, :event_start, :event_status, :location, :image, :description)
+            :min_attend, :event_start, :event_end,:event_status, :location, :image, :description)
   end
 
   def check_login
