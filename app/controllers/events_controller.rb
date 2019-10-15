@@ -58,7 +58,10 @@ class EventsController < ApplicationController
       end
 
       CheckOpenTimeUpJob.perform_at(@event.apply_end, {id: @event.id})
-      # EventMailer.update_notice(event: @event).deliver_later
+
+      @event.users.each do |u|
+          EventMailer.update_notice(event: @event, user: u).deliver_later
+      end
     else
       render :edit
     end
