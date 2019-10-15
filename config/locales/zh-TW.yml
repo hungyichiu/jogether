@@ -324,14 +324,14 @@
         one: 有一個錯誤導致 %{resource} 不能被儲存：
         other: 有 %{count} 個錯誤導致 %{resource} 不能被儲存：
 
-    AASM:
-        draft: 草稿
-        open: 開放報名中
-        reached_min: 確認出團
-        apply_end: 報名結束
-        cancelled: 活動已取消
-        sport: 運動
-        food: 美食
-        art: 藝文
-        entertainment: 娛樂
-        learn: 學習
+  AASM:
+    draft: 草稿
+    open: 開放報名中
+    reached_min: 確認出團
+    apply_end: 報名結束
+    cancelled: 活動已取消
+    sport: 運動
+    food: 美食
+    art: 藝文
+    entertainment: 娛樂
+    learn: 學習

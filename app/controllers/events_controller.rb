@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   require 'sidekiq/api'
 
-  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :view_participants, :cancel_event, :close_event, :owner]
-  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :cancel_event]
+  before_action :find_event, only: [:show, :edit, :update, :destroy, :apply, :add_like, :dislike, :collect_dislike, :view_participants, :cancel_event, :close_event, :owner]
+  before_action :check_login, only: [:new, :create, :update, :destroy, :apply, :add_like, :dislike, :collect_dislike, :cancel_event]
   
   def index
     render layout: "index"
@@ -101,6 +101,11 @@ class EventsController < ApplicationController
     # redirect_to my_like_path, notice: "刪除收藏"
   end
 
+  def collect_dislike
+    current_user.likes.find_by(event: @event).destroy if current_user.liked?(@event)
+    redirect_to my_like_path, notice: "刪除收藏"
+  end
+
   def close_event
     authorize @event
     @event.to_success!
@@ -120,6 +125,7 @@ class EventsController < ApplicationController
   end
 
   def sport
+    # I18n.locale = 'en'
     find_event_type(:sport)
   end
 

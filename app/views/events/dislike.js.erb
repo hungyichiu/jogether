@@ -1,2 +1,3 @@
-$('#like_<%= @event.id %>').css({backgroundColor: '#fff', color: '#f00'});
-alert("刪除收藏");
+<%# debugger %>
+$('#like_<%= @event.id %>').css({"background-color": "#fff", "color": "#f00"});
+$('#like_<%= @event.id %>').attr("href", "<%= add_like_event_path %>");
