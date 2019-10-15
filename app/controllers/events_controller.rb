@@ -9,20 +9,16 @@ class EventsController < ApplicationController
   end
 
   def list
-    @events = Event.available.order(created_at: :desc).search(params[:search])
-    # flash[:notice] = "無查詢符合之項目" if true
-    
     # @events = Event.available.order(created_at: :desc).search(params[:search])
-    # if params[:search].blank? 
-    #   @events
-    #   flash[:notice] = "無查詢符合之項目"
-    # elsif @events.blank?
-    #   @events = Event.available.order(created_at: :desc)
-    #   flash[:notice] = "無查詢符合之項目"
-    # else
-    #   @events
-    #   flash[:notice] = "查詢結果如下"
-    # end
+    
+    @events = Event.available.order(created_at: :desc).search(params[:search])
+    if params[:search].blank? || @events.blank?
+      @events = Event.available.order(created_at: :desc)
+      flash[:notice] = "無查詢符合之項目"
+    else
+      @events
+      flash[:notice] = "查詢結果如下"
+    end
   end
 
   def new
@@ -63,7 +59,7 @@ class EventsController < ApplicationController
       end
 
       CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
-      # 寄信通知團員有變更(TBD)
+      # EventMailer.update_notice(event: @event).deliver_later
     else
       render :edit
     end

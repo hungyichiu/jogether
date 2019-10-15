@@ -1,5 +1,10 @@
 class EventMailer < ApplicationMailer
 
+  def update_notice(event)
+    @event = event
+    # mail to: event.user.email, subject: "#{event.event_name}活動內容有更新喔!"
+  end
+
   def reach_min_notice(event)
     @event = event
     mail to: event.users.first.email, subject: "#{event.event_name}已到達成團人數囉!"
