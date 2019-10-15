@@ -20,7 +20,7 @@
 
   <body>
     <%= render 'shared/frontend/navbar' unless @disable_nav %>
-    <%= render 'shared/frontend/flash' if notice %>
+    
 
     <div class="wrap">
       <div class="side-bar">
@@ -28,6 +28,7 @@
       </div>
 
       <div class="main">
+        <%= render 'shared/frontend/flash' if notice %>
         <%= yield %>
       </div>
 
