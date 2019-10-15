@@ -9,8 +9,6 @@ class EventsController < ApplicationController
   end
 
   def list
-    # @events = Event.available.order(created_at: :desc).search(params[:search])
-    
     @events = Event.available.order(created_at: :desc).search(params[:search])
     if params[:search].blank? || @events.blank?
       @events = Event.available.order(created_at: :desc)
@@ -30,8 +28,9 @@ class EventsController < ApplicationController
 
     if @event.save
       EventLog.create(event: @event, user: current_user, role: 'owner')
-      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
-
+      # CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
+      # byebug
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {id: @event.id})
       redirect_to events_path, notice: "活動建立成功"
     else
       render :new
@@ -58,7 +57,7 @@ class EventsController < ApplicationController
         job.delete if job.args == [{ "event_id" => @event.id }]
       end
 
-      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {id: @event.id})
       # EventMailer.update_notice(event: @event).deliver_later
     else
       render :edit

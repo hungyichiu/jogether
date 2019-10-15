@@ -3,7 +3,9 @@ class CheckOpenTimeUpJob
   # queue_as :default
 
   def perform(params)
-    event = Event.find(params[:id])
+    # byebug
+    event = Event.find(params["id"])
+    
     if event.reached_min?
       event.to_success!
     else
