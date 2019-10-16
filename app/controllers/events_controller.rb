@@ -9,17 +9,18 @@ class EventsController < ApplicationController
   end
 
   def list
-    if params[:search]
-      @events = Event.available.order(created_at: :desc).search(params[:search])
-    else
+    @events = Event.available.order(created_at: :desc).search(params[:search])
+    if params[:search].blank? || @events.blank?
       @events = Event.available.order(created_at: :desc)
-      # flash[:notice] = "無查詢符合之項目" <-- 無作用 @@
+      flash[:notice] = "無查詢符合之項目"
+    else
+      @events
+      flash[:notice] = "查詢結果如下"
     end
   end
 
   def new
     @event = Event.new(min_attend: 1)
-    @disable_footer = true
   end
 
   def create
@@ -27,8 +28,9 @@ class EventsController < ApplicationController
 
     if @event.save
       EventLog.create(event: @event, user: current_user, role: 'owner')
-      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
-
+      # CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
+      # byebug
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {id: @event.id})
       redirect_to events_path, notice: "活動建立成功"
     else
       render :new
@@ -55,8 +57,11 @@ class EventsController < ApplicationController
         job.delete if job.args == [{ "event_id" => @event.id }]
       end
 
-      CheckOpenTimeUpJob.perform_at(@event.apply_end, {event_id: @event.id})
-      # 寄信通知團員有變更(TBD)
+      CheckOpenTimeUpJob.perform_at(@event.apply_end, {id: @event.id})
+
+      @event.users.each do |u|
+          EventMailer.update_notice(event: @event, user: u).deliver_later
+      end
     else
       render :edit
     end
