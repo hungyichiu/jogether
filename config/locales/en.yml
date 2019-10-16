@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+  AASM:
+    draft: 草稿
+    open: 'abxc'
+    reached_min: 確認出團
+    apply_end: 報名結束
+    cancelled: 活動已取消
+    sport: 運動
+    food: 美食
+    art: 藝文
+    entertainment: 娛樂
+    learn: 學習

@@ -10,9 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
- *= require font-awesome
  */
 @import "reset";
 @import "bootstrap";
@@ -62,9 +62,9 @@ body { padding-top: 66px; }
   }
 }
 
-i {
-  margin-right: 5px;
-}
+// i {
+//   margin-right: 5px;
+// }
 
 
 
@@ -218,7 +218,7 @@ i {
   .social_icon{
   position: absolute;
   right: 20px;
-  top: -45px;
+  top: -15px;
   }
   
   .input-group-prepend span{
@@ -307,11 +307,12 @@ i {
     z-index: 1;
   }
 
-  .redbg{
-    background-color:#f00;
-    color: #ffffff;
+  .card-body .redbg {
+    color: #fff;
+    background-color: #f00;
   }
-  .whitebg{
-    background-color:#fff;
+
+  .card-body .whitebg {
     color: #f00;
+    background-color: #fff;
   }

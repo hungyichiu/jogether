@@ -19,9 +19,12 @@
     </div>
   </div>
   <div class="status-tag <%#= event.event_status == 'open' ? 'open_tag' : 'reach_min_tag' %>"></div>
-  <div class="tag">
-    <%= event.event_status %>
-  </div>
+   <div class="tagwrap"> 
+     <div class="tag">
+     <%= t("AASM.#{event.event_status}")%>
+       <%#= event.event_status %>
+     </div>
+   </div>
 </div>
 
 <% end %>
