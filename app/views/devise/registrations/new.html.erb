@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center h-100">
     <div class="card car1">
       <div class="card-header">
-        <h2 class="regh2" >註冊新帳號 Sign Up</h2>
+        <h2 class="regh2" >註冊新帳號</h2>
         <div class="d-flex justify-content-end social_icon">
           <span>
             <%= link_to "", user_facebook_omniauth_authorize_path, class:"fab fa-facebook-square ylloow"%>
@@ -22,9 +22,10 @@
                   <span class="input-group-text"><i class="fas fa-arrow-alt-circle-right"></i></span>
                 </div> %>
                 <%= f.input :email,
+                            # label: email,t('form.email'),
                             required: true,
                             autofocus: true,
-                            input_html: { autocomplete: "email" },class:"form-control"%>
+                            input_html: { autocomplete: "電子信箱" },class:"form-control"%>
               </div>
 
               <div class="input-group form-group">
@@ -32,9 +33,10 @@
                   <span class="input-group-text"><i class="fas fa-arrow-alt-circle-right"></i></span>
                 </div> %>
                 <%= f.input :password,
+                            # label: password,t('form.password')
                             required: true,
-                            hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                            input_html: { autocomplete: "new-password" },class:"form-control" %>
+                            hint: ("最少需要 #{@minimum_password_length} 位字元" if @minimum_password_length),
+                            input_html: { autocomplete: "密碼" },class:"form-control" %>
               </div>
 
               <div class="input-group form-group">
@@ -42,13 +44,14 @@
                   <span class="input-group-text"><i class="fas fa-arrow-alt-circle-right"></i></span>
                 </div> %>
                 <%= f.input :password_confirmation,
+                              # label: confirm,t('form.confirm')
                               required: true,
-                              input_html: { autocomplete: "new-password" },class:"form-control" %>
+                              input_html: { autocomplete: "密碼確認" },class:"form-control" %>
               </div>
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Sign up", class: "btn float-right login_btn" %>        
+            <%= f.button :submit, "註冊", class: "btn float-right login_btn" %>        
           </div>
 
           <div class="form-group">
@@ -59,7 +62,7 @@
 
       <div class="card-footer">
         <div class="d-flex justify-content-center links">
-          <span>已有帳號？點我登入<%= link_to "Login", user_session_path%></span>
+          <span>已有帳號？點我<%= link_to "登入", user_session_path%></span>
         </div>
       </div>
     </div>

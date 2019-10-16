@@ -30,6 +30,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  simple_form:
+    labels:
+      account: Account
+      email: Email
+      user_type: User Type
+      id: ID
+      name: Name
+      password: Password
+      confirm: ConfirmPassword
+    user_type:
+      normal: Normal Account
+      test: Test Account
   hello: "Hello world"
   AASM:
     draft: 草稿

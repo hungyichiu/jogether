@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center h-100">
     <div class="card carlogin">
       <div class="card-header">
-        <h2 class="regh2" >登入 Login</h2>
+        <h2 class="regh2" >登入</h2>
         <div class="d-flex justify-content-end social_icon">
           <span>
             <%= link_to "", user_facebook_omniauth_authorize_path, class:"fab fa-facebook-square ylloow"%>
@@ -22,6 +22,7 @@
                   <span class="input-group-text"><i class="fas fa-arrow-alt-circle-right"></i></span>
                 </div> %>
                 <%= f.input :email,
+                            # label: "電子郵件",
                             required: false,
                             autofocus: true,
                             input_html: { autocomplete: "email" },class:"form-control"%>
@@ -32,17 +33,18 @@
                   <span class="input-group-text"><i class="fas fa-arrow-alt-circle-right"></i></span>
                 </div> %>
                 <%= f.input :password,
+                            # label: "密碼",
                             required: false,
                             input_html: { autocomplete: "current-password" },class:"form-control" %>
               </div>
-              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              <%= f.input :remember_me, label: "記住我？",as: :boolean if devise_mapping.rememberable? %>
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Login", class: "btn float-right login_btn" %>        
+            <%= f.button :submit, "登入", class: "btn float-right login_btn" %>        
           </div>
           <div class="d-flex links">
-            <span>還沒有帳號？點我註冊<%= link_to "Sign Up", new_user_registration_path%></span>
+            <span>還沒有帳號？點我<%= link_to "註冊", new_user_registration_path%></span>
           </div>
         <% end %>
       </div>
