@@ -1,4 +1,17 @@
-"zh-TW":
+zh-TW:
+  simple_form:
+    labels:
+      defaults:
+        account: 帳 號
+        email: 電子信箱
+        user_type: 帳號類別
+        id: 身份證號
+        name: 姓 名
+        password: 密碼
+        password_confirmation: 確認密碼
+      user_type:
+        normal: 一般帳號
+        test: 測試帳號
   activerecord:
     errors:
       messages:
@@ -323,7 +336,6 @@
       not_saved:
         one: 有一個錯誤導致 %{resource} 不能被儲存：
         other: 有 %{count} 個錯誤導致 %{resource} 不能被儲存：
-
   AASM:
     draft: 草稿
     open: 開放報名中
@@ -335,3 +347,4 @@
     art: 藝文
     entertainment: 娛樂
     learn: 學習
+  
