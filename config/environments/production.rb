@@ -97,7 +97,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['smtp_address'],
     port: 587,
-    domain: '5xruby.tw',
+    domain: 'herokuapp.com',
     user_name: ENV['smtp_username'],
     password: ENV['smtp_password'],
     authentication: 'plain',
