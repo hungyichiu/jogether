@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <label for="event_type">活動類型
-          <%= f.select :event_type, options_for_select(Event.event_types.keys), required: true, class: 'form-control'%> 
+          <%= f.select :event_type, options_for_select(Event.event_types.keys, f.object.event_type || :sport), required: true, class: 'form-control'%> 
         </label>
       </div>
 
