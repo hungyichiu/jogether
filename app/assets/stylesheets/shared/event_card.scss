@@ -9,6 +9,7 @@
 
   .card-img {
     height: 100%;
+    object-fit: cover;
   }
 
   p {
@@ -52,6 +53,14 @@
       font-weight: 900;
     }
 
+}
+
+.card-text{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
 }
 
 
