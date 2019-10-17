@@ -44,7 +44,7 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'simple_form', '~> 4.1'
-gem 'date_wrapper', '~> 0.1.3'
+# gem 'date_wrapper', '~> 0.1.3'
 # gem 'webpacker', '~> 0.1'
 # gem 'webpacker', '~> 4.0', '>= 4.0.7'
 #Use for MetaSearch
@@ -67,6 +67,7 @@ gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 gem 'factory_bot_rails', '~> 5.1'
 # gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+# gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-datetimepicker-3'

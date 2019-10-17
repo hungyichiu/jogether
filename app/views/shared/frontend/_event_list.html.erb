@@ -7,9 +7,8 @@
           <h5 class="card-title"><%= event.event_name %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar-alt"></i><%= "#{event.event_start}" %>~<%= "#{event.event_end}" %></h6>
           <p class="card-text">活動說明：<%= event.description %></p>
-          <p class="card-text">揪團進度：<%= event.event_status %></p>
-          <%# 比event_card多了看報名人數這行 %>
-          <p class="card-text"><small class="text-muted">目前報名人數：<%= event.applied_participants_logs.count %>人</small></p>
+          <p class="card-text">揪團進度：<%= t("AASM.#{event.event_status}")%></p>
+          <%= sign_up_amount(event) %>
         </div>
       </div>
     <% end %> 
