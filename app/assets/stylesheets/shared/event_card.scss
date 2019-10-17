@@ -15,47 +15,42 @@
     margin-bottom: 5px;
   }
   .status-tag {
-    // background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
-    /* transform: rotateZ(45deg); */
     width: 100px;
     height: 100px;
     position: absolute;
     top: 0;
     right: 0;
-
-    // .open_tag {
-    //   background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
-    // }
-
-    // .reach_min_tag {
-    //   background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%);
-    // }
-
-    // .color-open {
-    //   background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
-    // }
-    // .color-reached_min {
-    //   background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%);
-    // }
   }
 
-.tagwrap{
-  text-align: center;
-}
-
-.tag {
-    /* transform: rotateZ(45deg); */
-    font-size: 14px;
-    font-weight: normal;
-    transform: rotateZ(45deg);
-    width: 80px;
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    color: #fff;
-    padding-left: 10px;
-    font-weight: 900;
+  i {
+    margin-right: 5px;
   }
+
+  .status-tag.color-open {
+    background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%)
+  }
+
+  .status-tag.color-reached_min {
+    background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%)
+  }
+
+  .tagwrap{
+    text-align: center;
+  }
+
+  .tag {
+      /* transform: rotateZ(45deg); */
+      font-size: 14px;
+      font-weight: normal;
+      transform: rotateZ(45deg);
+      width: 80px;
+      position: absolute;
+      top: 20px;
+      right: 0px;
+      color: #fff;
+      padding-left: 10px;
+      font-weight: 900;
+    }
 
 }
 
