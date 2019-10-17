@@ -15,11 +15,16 @@
  *= require_self
  */
 @import "reset";
+<<<<<<< HEAD
 // @import "date_wrapper";
+=======
+// @import "bootstraps";
+>>>>>>> 26d096084e55baa9a259c92759d6cdd5f4e2f815
 @import url('https://fonts.googleapis.com/css?family=Numans');
 @import "font-awesome";
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker-3';
+
 
 html, body{
   font-family: 'Numans', sans-serif;
@@ -147,8 +152,7 @@ body { padding-top: 66px; }
 
 .regh2{
   // text-align: center;
-  color: #ffffff;
-  text-shadow:3px 3px 3px #666666;
+  color: #666;
 }
 
 .event-categories a {
@@ -190,7 +194,9 @@ body { padding-top: 66px; }
   margin-top: 50px;
   margin-bottom: auto;
   width: 450px;
-  background-color: rgba(0,0,0,0.5) !important;
+  border: 10px solid #000000;
+  box-shadow: 5px 5px 5px #666;
+  background-color: rgba(255,255,255,1) !important;
   }
 
   .carlogin{
@@ -198,7 +204,8 @@ body { padding-top: 66px; }
     margin-top: 50px;
     margin-bottom: auto;
     width: 450px;
-    background-color: rgba(0,0,0,0.5) !important;
+    box-shadow: 5px 5px 5px #666;
+    background-color: rgba(255,255,255,0.8) !important;
   }
   
   .social_icon span{
@@ -226,7 +233,7 @@ body { padding-top: 66px; }
   width: 50px;
   background-color: #FFC312;
   color: black;
-  border:0 !important;
+  // border:0 !important;
   }
   
   input:focus{
@@ -259,7 +266,7 @@ body { padding-top: 66px; }
   }
   
   .links{
-  color: white;
+    color: #333;
   }
   
   .links a{

@@ -11,7 +11,7 @@
       <%= form_tag(list_events_path, :method => "get" ) do %>
         <%= text_field_tag :search, nil, placeholder: "Search", class: "form-control mr-sm-2" %>
         <%= button_tag type: "submit", :event_name => nil, class: "btn btn-outline-warning my-2 my-sm-0" do %>
-          <i class="fas fa-search"></i>
+          <%= fa_icon "search" %>
         <% end %>
       <% end %>
     </div>
@@ -21,7 +21,7 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= avatar_tag(current_user, class_name: 'nav-avatar') %>
+              <%= url_for avatar_tag(current_user, class_name: 'nav-avatar') %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "開始揪團！", new_event_path, class: "dropdown-item" %>

@@ -1,7 +1,7 @@
 <div class="form-container shadow">
   <div class="event-show-header">
     <div class="event-img">
-      <%= activity_img(@event) %>
+      <%= url_for activity_img(@event) %>
     </div>
 
     <div class="tag">
@@ -9,7 +9,7 @@
     </div>
 
     <%= link_to owner_event_path, class: "owner-photo" do %>
-      <%= avatar_tag(@event.owner, size: '70x70') %>
+      <%= url_for avatar_tag(@event.owner, size: '70x70') %>
     <% end %>
   </div>
 

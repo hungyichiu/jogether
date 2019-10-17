@@ -34,6 +34,8 @@ gem 'devise-bootstrap-views', '~> 1.1'
 gem 'recaptcha', git: "https://github.com/ambethia/recaptcha.git"
 # Time validator
 gem 'validates_timeliness', '~> 4.1', '>= 4.1.1'
+# AWS s3
+gem "aws-sdk-s3", require: false
 
 
 # Use ActiveStorage variant
@@ -63,7 +65,7 @@ gem 'friendly_id', '~> 5.3'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 gem 'factory_bot_rails', '~> 5.1'
-gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+# gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
 

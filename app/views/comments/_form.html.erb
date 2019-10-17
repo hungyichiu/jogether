@@ -5,7 +5,8 @@
 
   <div class="form-group">
     <label for="name">暱稱：
-      <%= f.text_field :name, class: 'form-control', id: "bootstrap-overrides", input_html: {value: current_user&.name } %>
+        <%= f.text_field :name, class: 'form-control', id: "bootstrap-overrides", input_html: {value: comment_name } %>
+      
     </label>
   </div>
 
@@ -17,6 +18,5 @@
     </label>
   </div>
 
-<%# <button type="submit" class="btn btn-warning btn-sm">Submit</button> %>
   <%= f.submit "送出", class: "btn btn-warning btn-sm" %>
 <% end %>

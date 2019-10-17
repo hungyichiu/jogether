@@ -2,7 +2,7 @@
   <div class="event-list">
     <%= link_to event_path(event) do %>
       <div class="card event-card shadow">
-        <%= activity_img(event, class_name: "card-img-top") %>
+        <%= url_for activity_img(event, class_name: "card-img-top") %>
         <div class="card-body">
           <h5 class="card-title"><%= event.event_name %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar-alt"></i><%= "#{event.event_start}" %>~<%= "#{event.event_end}" %></h6>
