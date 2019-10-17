@@ -15,7 +15,7 @@
     margin-bottom: 5px;
   }
   .status-tag {
-    background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
+    // background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
     /* transform: rotateZ(45deg); */
     width: 100px;
     height: 100px;
@@ -23,13 +23,20 @@
     top: 0;
     right: 0;
 
-    .open_tag {
-      background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
-    }
+    // .open_tag {
+    //   background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
+    // }
 
-    .reach_min_tag {
-      background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%);
-    }
+    // .reach_min_tag {
+    //   background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%);
+    // }
+
+    // .color-open {
+    //   background-image: linear-gradient(45deg, transparent 50%, #87d2f5 50%, #87d2f5 75%, transparent 75%, transparent 100%);
+    // }
+    // .color-reached_min {
+    //   background-image: linear-gradient(45deg, transparent 50%, #d6e6b5 50%, #d6e6b5 75%, transparent 75%, transparent 100%);
+    // }
   }
 
 .tagwrap{

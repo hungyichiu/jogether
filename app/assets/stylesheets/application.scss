@@ -15,10 +15,11 @@
  *= require_self
  */
 @import "reset";
-@import "bootstrap";
 // @import "date_wrapper";
 @import url('https://fonts.googleapis.com/css?family=Numans');
 @import "font-awesome";
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker-3';
 
 html, body{
   font-family: 'Numans', sans-serif;
