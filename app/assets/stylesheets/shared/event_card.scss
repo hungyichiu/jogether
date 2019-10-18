@@ -9,6 +9,7 @@
 
   .card-img {
     height: 100%;
+    object-fit: cover;
   }
 
   p {
@@ -22,7 +23,7 @@
     right: 0;
   }
 
-  i {
+  .fa-calendar-alt {
     margin-right: 5px;
   }
 
@@ -54,6 +55,14 @@
 
 }
 
+.card-text{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+}
+
 @media screen and (max-width: 768px) {
   .event-card {
     .card-title {
@@ -61,3 +70,6 @@
     }
   }
 }
+
+
+
