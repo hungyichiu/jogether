@@ -120,6 +120,7 @@
 
 <script>
   var map, lat1, lng2;
+  var options;
   function initMap() {
 
     geocoder = new google.maps.Geocoder();
@@ -127,7 +128,7 @@
     var directionsDisplay = new google.maps.DirectionsRenderer();
     // 載入路線服務與路線顯示圖層
     
-    navigator.geolocation.watchPosition((position) => {
+    navigator.geolocation.watchPosition((position, options) => {
       console.log(position.coords);
       lat1 = position.coords.latitude;
       lng2 = position.coords.longitude;
@@ -198,6 +199,15 @@
       //   }
       // });
     }
+    function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+    }
+
+    options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+    };
 }
 </script>
 
