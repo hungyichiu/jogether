@@ -1,9 +1,13 @@
 $(document).on('turbolinks:load', function () {
+  var qrcode = null;
+  try {
+    qrcode = new QRCode("qrcode");
+  } catch {
+    return ;
+  }
   $(".qr-btn").click(function () {
     $('#eventQRCode').modal('toggle')
   })
-
-  var qrcode = new QRCode("qrcode");
 
   function makeCode() {
     var elText = document.getElementById("text");
