@@ -63,4 +63,13 @@
   -webkit-line-clamp:3;
 }
 
+@media screen and (max-width: 768px) {
+  .event-card {
+    .card-title {
+      width: 85%;
+    }
+  }
+}
+
+
 
